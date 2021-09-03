@@ -78,7 +78,7 @@ class Lexer(object):
 
     t_COMA = r'\,'
     t_PUNTOCOMA = r'\;'
-    t_PUNTO = r'\.'
+    #t_PUNTO = r'\.'
     t_EQUAL = r'\='
     
     t_MAYOR = r'\>'
@@ -92,19 +92,28 @@ class Lexer(object):
     t_RESTA = r'\-'
     t_MULTIPLICA = r'\*'
     t_DIVIDE = r'\/'
-    t_POTENCIA = r'\**'
+    t_POTENCIA = r'\^'
 
 
+
+    def input(self,data):
+        self.errors = []
+        self.lexer.input(data)
+
+    def build(self,**kwargs):
+        self.lexer = lex.lex(object=self, **kwargs)
+
+
+    def token(self):
+        return self.lexer.token()
 
     def t_ESPACIO(self, t):
 
          r"""[ ]+|[\t]+"""
          pass
 
-    def t_INTEGER(self,t):
-
+    def t_INTEGER(self, t):
         r"""-\d+|\d+"""
-        
         try:
             t.value = int(t.value)
         except ValueError:
@@ -112,7 +121,7 @@ class Lexer(object):
             t.value = 0
         return t
 
-    def t_BOOLEAN(self, t):
+    def t_BOOL(self, t):
         r"""True|False"""
         try:
             if t.value == "True":
@@ -120,7 +129,7 @@ class Lexer(object):
             else:
                 t.value = False
         except ValueError:
-            print("El valor no es boolean")
+            print("Didn't find a boolean")
             t.value = False
 
         return t
@@ -131,8 +140,8 @@ class Lexer(object):
         return t
 
     def t_ID(self, t):
-        r"""[a-zA-Z_#?][a-zA-Z0-9_#?]*"""
-        temp = self.reservada.get(t.value, 'ID')
+        r"""[a-zA-Z][a-zA-Z0-9_@&?]*"""
+        temp = self.reservadas.get(t.value, 'ID')
         if temp == "ID":
             if not t.value[0].islower():
                 self.t_error(t)
@@ -140,38 +149,46 @@ class Lexer(object):
         return t
 
     def t_COMENTARIO(self, t):
-        r"""\@*"""
+        r"""\--.*"""
         pass
 
+    
     def t_newline(self, t):
         r"""[\n]"""
         t.lexer.lineno += len(t.value)
         pass
 
     def t_error(self, t):
-        self.errores.append(f'Found illegal character in line {t.lexer.lineno}: \n"{t.value}"')
+        self.errors.append(f'Found illegal character in line {t.lexer.lineno}: \n"{t.value}"')
         t.lexer.skip(1)
         pass
 
-    
     def run(self, data):
         self.input(data)
         while True:
             tok = self.lexer.token()
             if not tok:
                 break
-    
 
 
-    analizador = lex.lex()
-    analizador.input(cadena)
-    prints = []
-    while True:
-            
-        tok = analizador.token()
-        if not tok: break
-        prints.append(tok)
-    return prints
+cadena= """
+let var1 = "Hello";
+let var2 = 2;
+START procedure []
+    let var1 = "Bye";
+    Add[var2, 5];
+    PosX 20;
+END
+"""
+
+analizador = Lexer()
+analizador.input(cadena)
+prints = []
+while True:      
+    tok = analizador.token()
+    if not tok:
+        break
+    print(tok)
      
         
         
