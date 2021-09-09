@@ -2,8 +2,8 @@ from tkinter import *
 import sys
 from tkinter import filedialog as fd
 from tkinter import messagebox as mb
-
-
+from Analizador_lexico import lexicalAnalizer
+from Syntax import *
 import serial
 import time
 
@@ -92,9 +92,18 @@ class Gui:
         cadena = self.CodeTextArea.get("1.0", END)
         self.OutputTextArea.delete("1.0",END)
 
+        if cadena != "":
+            lista = lexicalAnalizer(cadena)
+            
+            #print(cadena)
+            sintacticAnalizer(cadena)
+            for i in lista:
+                self.OutputTextArea.insert(INSERT,errores)
+                self.OutputTextArea.insert(INSERT,'\n')
+
                 
-      
-        mb.showwarning("Error","Debes escribir código!!")
+        else:
+            mb.showwarning("Error","Debes escribir código!!")
 
     def runButtonClick(self):
         cadena = self.CodeTextArea.get("1.0", END)
