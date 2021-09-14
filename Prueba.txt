@@ -1,9 +1,28 @@
-Start
+Inicio
 
-Move m ;
+@Comentario
 
-Move p ;
+move (p);
+
+delay(5,"mili");
+
+while ( 3<5){
+
+	move(i);
+	opera(+,5,4);
+	move(p);
+	println("hola");
+
+	if  3==4 {
+		
+		move(c);
+		move(m);
+		opera(-,2,6);
+	}
+
+}
 
 
 
-End
+Fin
+
