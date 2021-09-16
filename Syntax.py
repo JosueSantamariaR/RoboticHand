@@ -4,6 +4,7 @@ import codecs
 import re
 from Analizador_lexico import tokens
 from Analizador_lexico import lexicalAnalizer
+from Comunicacion import write_read
 from sys import stdin
 
 variables = []
@@ -265,18 +266,23 @@ def p_Move(p):
     p[0] = p[3]
 
     if p[3] == "p":
+        write_read("1")
         print("Moviendo pulgar")
 
     elif p[3] == "i":
+        write_read("2")
         print("Moviendo índice")
 
     elif p[3] == "c":
+        write_read("3")
         print ("Moviento centro")
 
     elif p[3] == "a":
+        write_read("4")
         print ("Moviendo anular")
 
     elif p[3] == "m":
+        write_read("5")
         print ("Moviendo meñique")
     else:
         print("Error, no es un dedo " + str(p[2]))
