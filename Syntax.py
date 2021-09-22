@@ -4,8 +4,9 @@ import codecs
 import re
 from Analizador_lexico import tokens
 from Analizador_lexico import lexicalAnalizer
-from Comunicacion import write_read
+#from Comunicacion import write_read
 from sys import stdin
+from Semantico import * 
 
 variables = []
 
@@ -13,228 +14,612 @@ errores = []
 
 data = []
 
+#-------------------------------------------START----------------------------------------
+
 def p_Start(p):
-    '''
-    Start : code
-    '''
 
-def p_Code(p):
-    '''
-    code : INICIO cuerpo FIN
-    '''
+    '''Start : code'''
 
-    p[0] = p[2]
-
-def p_cuerpo(p):
-    '''
-    cuerpo : variable
-           | expresion
-    '''
-
-    p[0] = p[1]
+    p[0] = Start(p[1],"Start")
 
 
-def p_Variable(p):
-    '''
-    variable : variable1 cuerpo
-             | variable2 cuerpo
-             | empty empty
-    '''
+#-----------------------------------------CODE-------------------------------------------
 
-    if (p[2] != '$'):
-        p[0] = (p[1],p[2])
+def p_code(p):
 
-    else:
-        p[0] = p[1]
+    '''code : INICIO cuerpo FIN'''
+
+    #p[0] = p[2]
+    p[0] = code(p[2],"code")
+
+
+#----------------------------------------CUERPO-----------------------------------------
+def p_cuerpo1(p):
+
+    '''cuerpo : variable'''
+
+    p[0] = cuerpo1(p[1],"cuerpo1") 
+
+def p_cuerpo2(p):
+
+    '''cuerpo : expresion'''
+
+    p[0] = cuerpo2(p[1],"cuerpo2") 
+
+
+#-----------------------------VAR DECLARATION----------------------------------------
 
 def p_Variable1(p):
-    '''
-    variable1 : LET ID PUNTOCOMA
-    '''
-    p[0] =(p[1],p[2])
-    print(p[1],p[2])
+
+    '''variable : variableDef1 cuerpo'''
+
+    p[0] = Variable1(p[1],p[2],"Variable1")
+
+
 
 def p_Variable2(p):
 
-    '''
-    variable2 : LET ID EQUAL INTEGER PUNTOCOMA
-              | LET ID EQUAL BOOLEAN PUNTOCOMA
-              | LET ID EQUAL funcion PUNTOCOMA
-    '''
+    '''variable : variableDef2 cuerpo'''
 
-    p[0] = (p[1],p[2],p[3],p[4])
+    p[0] = Variable2(p[1],p[2],"Variable2")
 
-def p_expresion(p):
-    '''
-    expresion : INTEGER expresion
-              | STRING expresion
-              | funcion expresion
-              | ID expresion
-              | condicion expresion
-              | operador expresion
-              | empty empty
-    '''
 
-    p[0] = p[1]
+def p_VariableEmpty(p):
 
-def p_operador(p):
-    '''
-    operador : SUMA
-             | RESTA
-             | MULTIPLICA
-             | DIVIDE
-             | POTENCIA
-    '''
+    '''variable : empty empty'''
+    p[0] = Null()
 
-    p[0] = p[1]
 
+
+
+def p_VariableDef1(p):
+
+    '''variableDef1 : LET ID PUNTOCOMA'''
+
+    p[0] =VariableDef1(Let(p[1]),Id(p[2]),PuntoComa(p[3]),"VariableDef1")
     
+    #print(p[1],p[2])
 
-def p_funcion(p):
 
-    '''
-    funcion : Opera
-            | Move
-            | Delay
-            | If
-            | While
-            | For
-            | Loop
-            | Println
-    '''
 
-    p[0] = p[1]
 
-def p_condicion(p):
-    '''
-    condicion : Igual expresion
-              | Diferente expresion
-              | Mayor expresion
-              | Menor expresion
-              | Mayorigual expresion
-              | Menorigual expresion
-    '''
+def p_VariableDef2_1(p):
 
-    p[0] = p[1]
+    '''variableDef2 : LET ID EQUAL INTEGER PUNTOCOMA'''
+
+    p[0] = VariableDef2_1(Let(p[1]),Id(p[2]),Equal(p[3]),Integer(p[4]),PuntoComa(p[5]),"VariableDef2_1")
+
+
+
+def p_VariableDef2_2(p):
+
+    '''variableDef2 : LET ID EQUAL BOOLEAN PUNTOCOMA'''
+
+    p[0] = VariableDef2_2(Let(p[1]),Id(p[2]),Equal(p[3]),Boolean(p[4]),PuntoComa(p[5]),"VariableDef2_2")
+
+
+
+def p_VariableDef2_3(p):
+
+    '''variableDef2 : LET ID EQUAL funcion PUNTOCOMA'''
+
+    p[0] = VariableDef2_3(Let(p[1]),Id(p[2]),Equal(p[3]),p[4],PuntoComa(p[5]),"VariableDef2_3")
+
+
+#-----------------------------------------EXPRESIONES-----------------------------------
+
+def p_expresion1(p):
+
+    '''expresion : INTEGER expresion'''
+
+    p[0] = expresion1(Integer(p[1]),p[2],"expresion1")
+
+def p_expresion2(p):
+
+    '''expresion : STRING expresion'''
+
+    p[0] = expresion2(String(p[1]),p[2],"expresion2")
+
+
+def p_expresion3(p):
     
+    '''expresion : funcion expresion'''
 
-def p_Igual(p):
-    '''
-    Igual : INTEGER IGUAL INTEGER
-          | ID IGUAL ID
-          | INTEGER IGUAL ID
-          | ID IGUAL INTEGER
-    '''
+    p[0] = expresion3(p[1],p[2],"expresion3")
+
+
+def p_expresion4(p):
+    
+    '''expresion : ID expresion'''
+
+    p[0] = expresion4(Id(p[1]),p[2],"expresion4")
+
+
+
+def p_expresion5(p):
+    
+    '''expresion : condicion expresion'''
+
+    p[0] = expresion5(p[1],p[2],"expresion5")
+
+
+def p_expresion6(p):
+    
+    '''expresion : operador expresion'''
+
+    p[0] = expresion6(p[1],p[2],"expresion6")
+
+
+def p_expresionEmpty(p):
+    
+    '''expresion : empty empty'''
+
+    p[0] = Null()
+
+
+
+#----------------------------------------------OPERADORES--------------------------------
+
+def p_operador1(p):
+
+    '''operador : SUMA'''
+
+    p[0] = operador1(Suma(p[1]),"operador1")
+
+def p_operador2(p):
+
+    '''operador : RESTA'''
+
+    p[0] = operador2(Resta(p[1]),"operador2")
+
+def p_operador3(p):
+
+    '''operador : MULTIPLICA'''
+
+    p[0] = operador3(Multiplica(p[1]),"operador3")
+
+def p_operador4(p):
+
+    '''operador : DIVIDE'''
+
+    p[0] = operador4(Divide(p[1]),"operador4")
+
+def p_operador5(p):
+
+    '''operador : POTENCIA'''
+
+    p[0] = operador5(Potencia(p[1]),"operador5")
+
+
+
+#-----------------------------------------------FUNCTIONS-------------------------------------
+
+def p_funcion1(p):
+
+    '''funcion : Opera'''
+
+    p[0] = funcion1(p[1],"funcion1")
+
+
+def p_funcion2(p):
+
+    '''funcion : Move'''
+
+    p[0] = funcion2(p[1],"funcion2")
+
+
+def p_funcion3(p):
+
+    '''funcion : Delay'''
+
+    p[0] = funcion3(p[1],"funcion3")
+
+def p_funcion4(p):
+
+    '''funcion : If'''
+
+    p[0] = funcion4(p[1],"funcion4")
+
+def p_funcion5(p):
+
+    '''funcion : While'''
+
+    p[0] = funcion5(p[1],"funcion5")
+
+
+def p_funcion6(p):
+
+    '''funcion : For'''
+
+    p[0] = funcion6(p[1],"funcion6")
+
+
+def p_funcion7(p):
+
+    '''funcion : Loop'''
+
+    p[0] = funcion7(p[1],"funcion7")
+
+
+def p_funcion8(p):
+
+    '''funcion : Println'''
+
+    p[0] = funcion8(p[1],"funcion8")
+
+
+
+#----------------------------------------CONDICIONES-------------------------------------
+
+
+def p_condicion1(p):
+
+    '''condicion : Igual expresion'''
+
+    p[0] = condicion1(p[1],p[2],"condicion1")
+    
+def p_condicion2(p):
+
+    '''condicion : Diferente expresion'''
+
+    p[0] = condicion2(p[1],p[2],"condicion2")
+
+
+def p_condicion3(p):
+
+    '''condicion : Mayor expresion'''
+
+    p[0] = condicion3(p[1],p[2],"condicion3")
+
+def p_condicion4(p):
+
+    '''condicion : Menor expresion'''
+
+    p[0] = condicion4(p[1],p[2],"condicion4")
+
+
+def p_condicion5(p):
+
+    '''condicion : Mayorigual expresion'''
+
+    p[0] = condicion5(p[1],p[2],"condicion5")
+
+def p_condicion6(p):
+
+    '''condicion : Menorigual expresion'''
+
+    p[0] = condicion6(p[1],p[2],"condicion6")
+
+
+
+
+
+#----------------------------------- IGUAL-------------------------------------------------
+def p_Igual1(p):
+
+    '''Igual : INTEGER IGUAL INTEGER'''
+
     if p[1] == p[3]:
         p[0] = True
     else:
         p[0] = False
 
-    print (p[0])
+    p[0] = Igual1(Integer(p[1]),IGUAL(p[2]),Integer(p[3]),"Igual1")
 
-def p_Diferente(p):
-    '''
-    Diferente : INTEGER DIFERENTE INTEGER
-          | ID DIFERENTE ID
-          | INTEGER DIFERENTE ID
-          | ID DIFERENTE INTEGER
-    '''
+    #print (p[0])
+
+def p_Igual2(p):
+
+    '''Igual : ID IGUAL ID'''
+
+    if p[1] == p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Igual2(Id(p[1]),IGUAL(p[2]),Id(p[3]),"Igual2")    
+
+    #print (p[0])
+
+def p_Igual3(p):
+
+    '''Igual : INTEGER IGUAL ID'''
+
+    if p[1] == p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Igual3(Integer(p[1]),IGUAL(p[2]),Id(p[3]),"Igual3")    
+
+    #print (p[0])
+
+def p_Igual4(p):
+    '''Igual : ID IGUAL INTEGER'''
+    if p[1] == p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Igual4(Id(p[1]),IGUAL(p[2]),Integer(p[3]),"Igual4")    
+
+    #print (p[0])
+#------------------------------------DIFERENTE------------------------------------------------
+
+
+def p_Diferente1(p):
+
+    '''Diferente : INTEGER DIFERENTE INTEGER'''
+
+    if p[1] != p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+    
+    p[0] = Diferente1(Integer(p[1]),DIFERENTE(p[2]),Integer(p[3]),"Diferente1")
+
+def p_Diferente2(p):
+
+    '''Diferente : ID DIFERENTE ID'''
+
     if p[1] != p[3]:
         p[0] = True
     else:
         p[0] = False
 
-def p_Mayor(p):
-    '''
-    Mayor : INTEGER MAYOR INTEGER
-          | ID MAYOR ID
-          | INTEGER MAYOR ID
-          | ID MAYOR INTEGER
-    '''
+    p[0] = Diferente2(Id(p[1]),DIFERENTE(p[2]),Id(p[3]),"Diferente2")    
+
+def p_Diferente3(p):
+
+    '''Diferente : INTEGER DIFERENTE ID'''
+
+    if p[1] != p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Diferente3(Integer(p[1]),DIFERENTE(p[2]),Id(p[3]),"Diferente3")
+
+def p_Diferente4(p):
+
+    '''Diferente : ID DIFERENTE INTEGER'''
+
+    if p[1] != p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Diferente4(Id(p[1]),DIFERENTE(p[2]),Integer(p[3]),"Diferente4")
+#------------------------------------MAYOR------------------------------------------------
+
+def p_Mayor1(p):
+
+    '''Mayor : INTEGER MAYOR INTEGER'''
     
     if p[1] > p[3]:
         p[0] = True
     else:
         p[0] = False
-    print(p[0])
 
-def p_Menor(p):
-    '''
-    Menor : INTEGER MENOR INTEGER
-          | ID MENOR ID
-          | INTEGER MENOR ID
-          | ID MENOR INTEGER
-    '''
+    p[0] = Mayor1(Integer(p[1]),MAYOR(p[2]),Integer(p[3]),"Mayor1")
+
+    #print(p[0])
+
+def p_Mayor2(p):
+
+    '''Mayor : ID MAYOR ID'''
+    
+    if p[1] > p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+    
+    p[0] = Mayor2(Id(p[1]),MAYOR(p[2]),Id(p[3]),"Mayor2")
+
+    #print(p[0])
+
+def p_Mayor3(p):
+
+    '''Mayor : INTEGER MAYOR ID'''
+    
+    if p[1] > p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Mayor3(Integer(p[1]),MAYOR(p[2]),Id(p[3]),"Mayor3")
+
+    #print(p[0])
+
+def p_Mayor4(p):
+
+    '''Mayor : ID MAYOR INTEGER'''
+    
+    if p[1] > p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Mayor4(Id(p[1]),MAYOR(p[2]),Integer(p[3]),"Mayor4")
+
+    #print(p[0])
+
+#---------------------------------MENOR---------------------------------------------------
+
+def p_Menor1(p):
+
+    '''Menor : INTEGER MENOR INTEGER'''
+
     if p[1] < p[3]:
         p[0] = True
     else:
         p[0] = False
 
-    print(p[0])
+    p[0] = Menor1(Integer(p[1]),MENOR(p[2]),Integer(p[3]),"Menor1")
 
-def p_Mayorigual(p):
-    '''
-    Mayorigual : INTEGER MAYORIGUAL INTEGER
-          | ID MAYORIGUAL ID
-          | INTEGER MAYORIGUAL ID
-          | ID MAYORIGUAL INTEGER
-    '''
+    #print(p[0])
+
+def p_Menor2(p):
+
+    '''Menor : ID MENOR ID'''
+
+    if p[1] < p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Menor2(Id(p[1]),MENOR(p[2]),Id(p[3]),"Menor2")
+
+    #print(p[0])
+
+def p_Menor3(p):
+
+    '''Menor : INTEGER MENOR ID'''
+
+    if p[1] < p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Menor3(Integer(p[1]),MENOR(p[2]),Id(p[3]),"Menor3")
+
+    #print(p[0])
+
+def p_Menor4(p):
+
+    '''Menor : ID MENOR INTEGER'''
+
+    if p[1] < p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Menor4(Id(p[1]),MENOR(p[2]),Integer(p[3]),"Menor4")
+
+    #print(p[0])
+
+#-----------------------------------MAYORIGUAL-------------------------------------------------
+
+
+def p_Mayorigual1(p):
+
+    '''Mayorigual : INTEGER MAYORIGUAL INTEGER'''
+
     if p[1] >= p[3]:
         p[0] = True
     else:
         p[0] = False
 
-    print(p[0])
+    p[0] = Mayorigual1(Integer(p[1]),MAYORIGUAL(p[2]),Integer(p[3]),"Mayorigual1")
 
-def p_Menorigual(p):
-    '''
-    Menorigual : INTEGER MENORIGUAL INTEGER
-          | ID MENORIGUAL ID
-          | INTEGER MENORIGUAL ID
-          | ID MENORIGUAL INTEGER
-    '''
+    #print(p[0])
+
+
+def p_Mayorigual2(p):
+
+    '''Mayorigual : ID MAYORIGUAL ID'''
+
+    if p[1] >= p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Mayorigual2(Id(p[1]),MAYORIGUAL(p[2]),Id(p[3]),"Mayorigual2")
+
+    #print(p[0])
+
+def p_Mayorigual3(p):
+
+    '''Mayorigual : INTEGER MAYORIGUAL ID'''
+
+    if p[1] >= p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Mayorigual3(Integer(p[1]),MAYORIGUAL(p[2]),Id(p[3]),"Mayorigual3")
+
+    #print(p[0])
+
+def p_Mayorigual4(p):
+
+    '''Mayorigual : ID MAYORIGUAL INTEGER'''
+    
+    if p[1] >= p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Mayorigual4(Id(p[1]),MAYORIGUAL(p[2]),Integer(p[3]),"Mayorigual4")
+
+    #print(p[0])
+
+
+#----------------------------------------MENORIGUAL--------------------------------------------
+def p_Menorigual1(p):
+
+    '''Menorigual : INTEGER MENORIGUAL INTEGER'''
 
     if p[1] <= p[3]:
         p[0] = True
     else:
         p[0] = False
 
-    print(p[0])
+    p[0] = Menorigual1(Integer(p[1]),MENORIGUAL(p[2]),Integer(p[3]),"Menorigual1")
 
-def p_If(p):
-
-    '''
-    If : IF condicion LLAVEL cuerpo LLAVER
-    '''
-
-    print(p[2])
-
-    
-    
-
-def p_For(p):
-
-    '''
-    For : FOR ID IN INTEGER PUNTOS INTEGER LLAVEL expresion LLAVER
-    '''
-
-    #Programar if's
-
-def p_Loop(p):
-    '''
-    Loop : LOOP LLAVEL cuerpo LLAVER
-    '''
-
-    #Programar if's
-
-def p_While(p):
-    '''
-    While : WHILE LPAREN  condicion  RPAREN LLAVEL cuerpo LLAVER
-    '''
-
-    #Programar if's
+    #print(p[0])
 
 
+
+def p_Menorigual2(p):
+
+    '''Menorigual : ID MENORIGUAL ID'''
+
+    if p[1] <= p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Menorigual2(Id(p[1]),MENORIGUAL(p[2]),Id(p[3]),"Menorigual2")
+
+    #print(p[0])
+
+
+def p_Menorigual3(p):
+
+    '''Menorigual : INTEGER MENORIGUAL ID'''
+
+    if p[1] <= p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Menorigual3(Integer(p[1]),MENORIGUAL(p[2]),Id(p[3]),"Menorigual3")
+
+    #print(p[0])
+
+
+
+def p_Menorigual4(p):
+
+    '''Menorigual : ID MENORIGUAL INTEGER'''
+
+    if p[1] <= p[3]:
+        p[0] = True
+    else:
+        p[0] = False
+
+    p[0] = Menorigual4(Id(p[1]),MENORIGUAL(p[2]),Integer(p[3]),"Menorigual4")
+
+    #print(p[0])
+
+
+
+
+
+
+
+#------------------------------------FUNCTIONS TYPES------------------------------------------------
 def p_Opera(p):
     '''
     Opera : OPERA LPAREN operador COMA expresion COMA expresion RPAREN PUNTOCOMA
@@ -253,10 +638,12 @@ def p_Opera(p):
     elif p[3] == "^":
         resultado = p[5]**p[7]
 
-
-    print(resultado)
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),p[3],COMA(p[4]),p[5],COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
     
+    #print(resultado)
 
+
+#--------------------------------------------------------------------------
 def p_Move(p):
 
     '''
@@ -266,33 +653,85 @@ def p_Move(p):
     p[0] = p[3]
 
     if p[3] == "p":
-        write_read("1")
+        #write_read("1")
         print("Moviendo pulgar")
 
     elif p[3] == "i":
-        write_read("2")
+        #write_read("2")
         print("Moviendo índice")
 
     elif p[3] == "c":
-        write_read("3")
+        #write_read("3")
         print ("Moviento centro")
 
     elif p[3] == "a":
-        write_read("4")
+        #write_read("4")
         print ("Moviendo anular")
 
     elif p[3] == "m":
-        write_read("5")
+        #write_read("5")
         print ("Moviendo meñique")
     else:
         print("Error, no es un dedo " + str(p[2]))
+
+    p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
+
+
+
+#--------------------------------------------------------------------------
+
 
 def p_Delay(p):
     '''
     Delay : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
     '''
-
+    p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
     #Programar if's
+
+#--------------------------------------------------------------------------
+
+
+def p_If(p):
+
+    '''
+    If : IF condicion LLAVEL cuerpo LLAVER
+    '''
+    p[0] = If(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),"If")
+    print(p[2])
+
+#--------------------------------------------------------------------------
+
+
+
+def p_While(p):
+    '''
+    While : WHILE LPAREN  condicion  RPAREN LLAVEL cuerpo LLAVER
+    '''
+    p[0]= While(WHILE(p[1]),LPAREN(p[2]),p[3],RPAREN(p[4]),LLAVEL(p[5]),p[6],LLAVER(p[7]),"While")
+    #Programar if's
+    
+#--------------------------------------------------------------------------   
+
+def p_For(p):
+
+    '''
+    For : FOR ID IN INTEGER PUNTOS INTEGER LLAVEL expresion LLAVER
+    '''
+    p[0]= For(FOR(p[1]),Id(p[2]),IN(p[3]),Integer(p[4]),PUNTOS(p[5]),Integer(p[6]),LLAVEL(p[7]),p[8],LLAVER(p[9]),"For")
+    #Programar if's
+
+#--------------------------------------------------------------------------
+
+
+def p_Loop(p):
+    '''
+    Loop : LOOP LLAVEL cuerpo LLAVER
+    '''
+    p[0] = Loop(LOOP(p[1]),LLAVEL(p[2]),p[3],LLAVER(p[4]),"Loop")
+    #Programar if's
+
+#--------------------------------------------------------------------------
+
 
 def p_Println(p):
     '''
@@ -300,9 +739,15 @@ def p_Println(p):
             
     '''
 
-    p[0] = p[3]
-    print(p[3])
+    #p[0] = p[3]
 
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),String(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+    #print(p[3])
+
+    
+
+
+#------------------------------------------EMPTY & ERRORS------------------------------------------
 
 def p_empty(p):
     '''
@@ -318,10 +763,50 @@ def p_error(p):
     print(p.lineno)
 
 
-    
-def sintacticAnalizer(cadena):
-    parser = yacc.yacc()
-    parser.parse(cadena)    
-    
-        
 
+#---------------------------------------------CALL RUNNER----------------------------------------
+
+def buscarFicheros(directorio):
+    ficheros = []
+    numArchivo = ''
+    respuesta = False
+    cont = 1
+
+    for base, dirs, files in os.walk(directorio):
+        ficheros.append(files)
+
+    for file in files:
+        print(str(cont) + "." + file)
+        cont = cont + 1
+
+    while respuesta == False:
+         numArchivo = input('\nNumero del test: ')
+         for file in files:
+            if file == files[int(numArchivo)-1]:
+                respuesta = True
+                break
+
+    print ("Has escogido \"%s\" \n" %files[int(numArchivo)-1])
+
+    return files[int(numArchivo)-1]
+
+
+def traducir(result):
+    graphFile = open('graphviztrhee.vz','w')
+    graphFile.write(result.traducir())
+    graphFile.close()
+    print ("El programa traducido se guardo en \"graphviztrhee.vz\"")
+
+
+def sintacticAnalizer(cadena):
+    parser = yacc.yacc()   
+    result = parser.parse(cadena)
+    result.imprimir(" ")
+    #print(result.traducir())
+    traducir(result)
+
+def showAst(cadena):
+    parser = yacc.yacc()   
+    result = parser.parse(cadena)
+    show = result.imprimir(" ")
+    return show 

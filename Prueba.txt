@@ -1,12 +1,10 @@
 Inicio
 
-@Comentario
-
 move (p);
 
 delay(5,"mili");
 
-while ( 3<5){
+while (3<5){
 
 	move(i);
 	opera(+,5,4);

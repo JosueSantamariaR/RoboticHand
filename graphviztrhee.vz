@@ -1,0 +1,253 @@
+digraph G{
+	 7[label= "move"]
+	8[label= "("]
+	9[label= "p"]
+	10[label= ")"]
+	11[label= ";"]
+	6[label= Move]
+	6 -> 7
+	6 -> 8
+	6 -> 9
+	6 -> 10
+	6 -> 11
+	5[label= funcion2]
+	5 -> 6
+	15[label= "delay"]
+	16[label= "("]
+	17[label= "5"]
+	18[label= ","]
+	19[label= ""mili""]
+	20[label= ")"]
+	21[label= ";"]
+	14[label= Delay]
+	14 -> 15
+	14 -> 16
+	14 -> 17
+	14 -> 18
+	14 -> 19
+	14 -> 20
+	14 -> 21
+	13[label= funcion3]
+	13 -> 14
+	25[label= "while"]
+	26[label= "("]
+	29[label= "3"]
+	30[label= "<"]
+	31[label= "5"]
+	28[label= Menor1]
+	28 -> 29
+	28 -> 30
+	28 -> 31
+	32[label= nodo_nulo]
+	27[label= condicion4]
+	27 -> 28
+	27 -> 32
+	33[label= ")"]
+	34[label= "{"]
+	39[label= "move"]
+	40[label= "("]
+	41[label= "i"]
+	42[label= ")"]
+	43[label= ";"]
+	38[label= Move]
+	38 -> 39
+	38 -> 40
+	38 -> 41
+	38 -> 42
+	38 -> 43
+	37[label= funcion2]
+	37 -> 38
+	47[label= "opera"]
+	48[label= "("]
+	50[label= "+"]
+	49[label= operador1]
+	49 -> 50
+	51[label= ","]
+	53[label= "5"]
+	54[label= nodo_nulo]
+	52[label= expresion1]
+	52 -> 53
+	52 -> 54
+	55[label= ","]
+	57[label= "4"]
+	58[label= nodo_nulo]
+	56[label= expresion1]
+	56 -> 57
+	56 -> 58
+	59[label= ")"]
+	60[label= ";"]
+	46[label= Opera]
+	46 -> 47
+	46 -> 48
+	46 -> 49
+	46 -> 51
+	46 -> 52
+	46 -> 55
+	46 -> 56
+	46 -> 59
+	46 -> 60
+	45[label= funcion1]
+	45 -> 46
+	64[label= "move"]
+	65[label= "("]
+	66[label= "p"]
+	67[label= ")"]
+	68[label= ";"]
+	63[label= Move]
+	63 -> 64
+	63 -> 65
+	63 -> 66
+	63 -> 67
+	63 -> 68
+	62[label= funcion2]
+	62 -> 63
+	72[label= "println"]
+	73[label= "("]
+	74[label= ""hola""]
+	75[label= ")"]
+	76[label= ";"]
+	71[label= Println]
+	71 -> 72
+	71 -> 73
+	71 -> 74
+	71 -> 75
+	71 -> 76
+	70[label= funcion8]
+	70 -> 71
+	80[label= "if"]
+	83[label= "3"]
+	84[label= "=="]
+	85[label= "4"]
+	82[label= Igual1]
+	82 -> 83
+	82 -> 84
+	82 -> 85
+	86[label= nodo_nulo]
+	81[label= condicion1]
+	81 -> 82
+	81 -> 86
+	87[label= "{"]
+	92[label= "move"]
+	93[label= "("]
+	94[label= "c"]
+	95[label= ")"]
+	96[label= ";"]
+	91[label= Move]
+	91 -> 92
+	91 -> 93
+	91 -> 94
+	91 -> 95
+	91 -> 96
+	90[label= funcion2]
+	90 -> 91
+	100[label= "move"]
+	101[label= "("]
+	102[label= "m"]
+	103[label= ")"]
+	104[label= ";"]
+	99[label= Move]
+	99 -> 100
+	99 -> 101
+	99 -> 102
+	99 -> 103
+	99 -> 104
+	98[label= funcion2]
+	98 -> 99
+	108[label= "opera"]
+	109[label= "("]
+	111[label= "-"]
+	110[label= operador2]
+	110 -> 111
+	112[label= ","]
+	114[label= "2"]
+	115[label= nodo_nulo]
+	113[label= expresion1]
+	113 -> 114
+	113 -> 115
+	116[label= ","]
+	118[label= "6"]
+	119[label= nodo_nulo]
+	117[label= expresion1]
+	117 -> 118
+	117 -> 119
+	120[label= ")"]
+	121[label= ";"]
+	107[label= Opera]
+	107 -> 108
+	107 -> 109
+	107 -> 110
+	107 -> 112
+	107 -> 113
+	107 -> 116
+	107 -> 117
+	107 -> 120
+	107 -> 121
+	106[label= funcion1]
+	106 -> 107
+	122[label= nodo_nulo]
+	105[label= expresion3]
+	105 -> 106
+	105 -> 122
+	97[label= expresion3]
+	97 -> 98
+	97 -> 105
+	89[label= expresion3]
+	89 -> 90
+	89 -> 97
+	88[label= cuerpo2]
+	88 -> 89
+	123[label= "}"]
+	79[label= If]
+	79 -> 80
+	79 -> 81
+	79 -> 87
+	79 -> 88
+	79 -> 123
+	78[label= funcion4]
+	78 -> 79
+	124[label= nodo_nulo]
+	77[label= expresion3]
+	77 -> 78
+	77 -> 124
+	69[label= expresion3]
+	69 -> 70
+	69 -> 77
+	61[label= expresion3]
+	61 -> 62
+	61 -> 69
+	44[label= expresion3]
+	44 -> 45
+	44 -> 61
+	36[label= expresion3]
+	36 -> 37
+	36 -> 44
+	35[label= cuerpo2]
+	35 -> 36
+	125[label= "}"]
+	24[label= While]
+	24 -> 25
+	24 -> 26
+	24 -> 27
+	24 -> 33
+	24 -> 34
+	24 -> 35
+	24 -> 125
+	23[label= funcion5]
+	23 -> 24
+	126[label= nodo_nulo]
+	22[label= expresion3]
+	22 -> 23
+	22 -> 126
+	12[label= expresion3]
+	12 -> 13
+	12 -> 22
+	4[label= expresion3]
+	4 -> 5
+	4 -> 12
+	3[label= cuerpo2]
+	3 -> 4
+	2[label= code]
+	2 -> 3
+	1[label= Start]
+	1->2
+	}

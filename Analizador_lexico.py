@@ -3,6 +3,7 @@ import re
 import codecs
 import os
 import sys
+from _ast import keyword
 
 errores = []
 
@@ -159,3 +160,4 @@ def lexicalAnalizer(cadena):
         prints.append(tok)
     return prints
      
+analizador = lex.lex()

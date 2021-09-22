@@ -98,6 +98,10 @@ class Gui:
             lista = lexicalAnalizer(cadena)
             
             sintacticAnalizer(cadena)
+            #txtResult = showAst(cadena)
+            #self.setAstInArea(txtResult)
+            
+
             #for i in lista:
             if len(errores):
                     
@@ -125,6 +129,9 @@ class Gui:
 
     def setOutputText(self, output):
         self.OutputTextArea.insert(INSERT, errores)
+
+    def setAstInArea(self, output):
+        self.OutputTextArea.insert(INSERT, output)
 
     #################### Funciones numero de linea del codigo ####################################
 
