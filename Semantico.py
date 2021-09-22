@@ -2881,7 +2881,7 @@ class Boolean(Nodo):
 
 class String(Nodo):
     def __init__(self,name):
-        self.name = name
+        self.name = name.strip('"')
 
     def imprimir(self,ident):
         print (ident+"STRING: "+self.name)

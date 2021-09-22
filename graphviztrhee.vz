@@ -16,7 +16,7 @@ digraph G{
 	16[label= "("]
 	17[label= "5"]
 	18[label= ","]
-	19[label= ""mili""]
+	19[label= "mili"]
 	20[label= ")"]
 	21[label= ";"]
 	14[label= Delay]
@@ -103,7 +103,7 @@ digraph G{
 	62 -> 63
 	72[label= "println"]
 	73[label= "("]
-	74[label= ""hola""]
+	74[label= "hola"]
 	75[label= ")"]
 	76[label= ";"]
 	71[label= Println]
