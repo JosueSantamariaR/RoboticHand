@@ -6,6 +6,7 @@ from Analizador_lexico import lexicalAnalizer
 from Syntax import *
 import serial
 import time
+import graphviz
 
 
 class Gui:
@@ -37,6 +38,7 @@ class Gui:
         Button(self.MainWindow, text="GUARDAR", background = "white", foreground = "black" ,command=self.SaveButtonClick).place(x=47.5, y=1)
         Button(self.MainWindow, text="COMPILAR", background = "yellow", foreground = "black" , command=self.compileButtonClick).place(x=550, y=1)
         Button(self.MainWindow, text="CORRER", background = "yellow", foreground = "black" , command=self.runButtonClick).place(x=620, y=1)
+        Button(self.MainWindow, text="Mostrar Arbol", background = "yellow", foreground = "black" , command=self.showAst).place(x=675, y=1)
         Button(self.MainWindow, text="SALIR", background = "red", foreground = "black" ,command=lambda: self.MainWindow.destroy()).place(x=945, y=1)
 
         # Inserta las dos areas de texto
@@ -121,6 +123,13 @@ class Gui:
 
 
         mb.showwarning("Error","Debes escribir código!!")
+
+    def showAst(self):
+
+        file = 'C:/Users/garroakion/Desktop/ProyectoCompiladores/RoboticHand/graphviztrhee.vz'
+        g= graphviz.render('dot','png',file)
+        graphviz.view(g)
+        
 
 
     def setCodeTextArea(self, output):
