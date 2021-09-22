@@ -125,8 +125,9 @@ class Gui:
         mb.showwarning("Error","Debes escribir código!!")
 
     def showAst(self):
+        ROOT_DIR = os.path.abspath(os.curdir)
 
-        file = 'C:/Users/garroakion/Desktop/ProyectoCompiladores/RoboticHand/graphviztrhee.vz'
+        file = ROOT_DIR + '/graphviztrhee.vz'
         g= graphviz.render('dot','png',file)
         graphviz.view(g)
         
