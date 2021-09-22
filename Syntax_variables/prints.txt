@@ -1,0 +1,12 @@
+Inicio
+
+println ( 2);
+
+
+println(v);
+
+main ( );
+
+Fin
+
+
