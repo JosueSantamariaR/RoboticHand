@@ -94,7 +94,9 @@ class Gui:
         cadena = self.CodeTextArea.get("1.0", END)
         self.OutputTextArea.delete("1.0",END)
         errores.clear()
-        
+        variables.clear()
+        valores.clear()
+        prints.clear()
 
         if cadena != "":
             lista = lexicalAnalizer(cadena)
@@ -109,13 +111,18 @@ class Gui:
                     
                 self.OutputTextArea.insert(INSERT,errores)
             else:
-                    
+                self.OutputTextArea.insert(INSERT,variables)
                 self.OutputTextArea.insert(INSERT,'\n')
+                
+                for elem in prints:
+                    print('{}'.format(elem))
+                    self.OutputTextArea.insert(INSERT,'{}'.format(elem))
+                    self.OutputTextArea.insert(INSERT,'\n')
 
                 
         else:
             mb.showwarning("Error","Debes escribir código!!")
-            
+    
 
     def runButtonClick(self):
         cadena = self.CodeTextArea.get("1.0", END)

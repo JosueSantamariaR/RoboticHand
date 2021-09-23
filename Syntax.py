@@ -2,6 +2,7 @@ import ply.yacc as yacc
 import os
 import codecs
 import re
+import time
 from Analizador_lexico import tokens
 from Analizador_lexico import lexicalAnalizer
 #from Comunicacion import write_read
@@ -12,7 +13,10 @@ variables = []
 
 errores = []
 
-data = []
+valores = []
+
+
+prints = []
 
 #-------------------------------------------START----------------------------------------
 
@@ -46,6 +50,172 @@ def p_cuerpo2(p):
     '''cuerpo : expresion'''
 
     p[0] = cuerpo2(p[1],"cuerpo2") 
+
+def p_cuerpo3(p):
+
+    '''cuerpo : cuerpo_if'''
+
+    p[0] = cuerpo3(p[1],"cuerpo3") 
+
+#---------------------------------------CUERPO_IF---------------------------------------
+
+def p_cuerpo_if1(p):
+
+    '''cuerpo_if : variable'''
+
+
+def p_cuerpo_if2(p):
+
+    '''cuerpo_if : expresion_if'''
+
+    p[0] = cuerpo_if2(p[1], "cuerpo_if2")
+
+
+
+#---------------------------------------Prueba IF---------------------------------------
+
+def p_expresion_if(p):
+    '''expresion_if : funcion_if expresion'''
+
+    p[0] = expresion_if(p[1], p[2], "expresion_if")
+
+def p_funcion_if1(p):
+    '''funcion_if : Move_if'''
+
+    p[0] = funcion_if1(p[1], "funcion_if1")
+
+def p_funcion_if2(p):
+    '''funcion_if : Delay_if'''
+    p[0] = funcion_if2(p[1], "funcion_if2")
+
+def p_funcion_if3(p):
+    '''funcion_if : Opera_if'''
+    p[0] = funcion_if3(p[1], "funcion_if3")
+
+def p_funcion_if4(p):
+    '''funcion_if : Println_if'''
+    p[0] = funcion_if4(p[1], "funcion_if4")
+
+def p_Move_if(p):
+    '''Move_if : MOVE LPAREN ID RPAREN PUNTOCOMA'''
+
+    if BoolCondicion:
+        if p[3] == "p":
+            #write_read("1")
+            print("Moviendo pulgar")
+
+        elif p[3] == "i":
+            #write_read("2")
+            print("Moviendo índice")
+
+        elif p[3] == "c":
+            #write_read("3")
+            print ("Moviento centro")
+
+        elif p[3] == "a":
+            #write_read("4")
+            print ("Moviendo anular")
+
+        elif p[3] == "m":
+            #write_read("5")
+            print ("Moviendo meñique")
+        else:
+            print("Error, no es un dedo " + str(p[2]))
+
+    p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
+
+def p_Delay_if(p):
+    '''
+    Delay_if : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
+    '''
+    if BoolCondicion:
+        if p[5] == "mili":
+            time.sleep(p[3]/1000)
+            print("Delay en milisegundos")
+            
+        elif p[5] == "seg":
+            time.sleep(p[3])
+            print("Delay en segundos")
+            
+        elif p[5] == "min":
+            time.sleep(p[3]*60)
+            print("Delay en minutos")
+
+        elif type(p[3]) != int:
+            errores.append(f'Error semántico: el valor de delay no es un número')
+    
+    p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
+
+def p_Opera_if(p):
+    '''
+    Opera_if : OPERA LPAREN operador COMA expresion COMA expresion RPAREN PUNTOCOMA
+    '''
+
+    #Programar If's
+    if BoolCondicion:
+        if p[3] == "+":
+            resultado = p[5]+p[7]
+        elif p[3] == "-":
+            resultado = p[5]-p[7]
+        elif p[3] == "*":
+            resultado = p[5]*p[7]
+        elif p[3] == "/":
+            resultado = p[5]//p[7]
+        elif p[3] == "^":
+            resultado = p[5]**p[7]
+    
+    #print(resultado)
+
+def p_Println1_if(p):
+    '''
+    Println_if : PRINTLN LPAREN STRING RPAREN PUNTOCOMA
+            
+    '''
+    if BoolCondicion:
+        prints.append(p[3])
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),String(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println2_if(p):
+    '''
+    Println_if : PRINTLN LPAREN INTEGER RPAREN PUNTOCOMA
+            
+    '''
+
+    if BoolCondicion:
+        prints.append(p[3])
+
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Integer(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+
+def p_Println3_if(p):
+    '''
+    Println_if : PRINTLN LPAREN ID RPAREN PUNTOCOMA
+            
+    '''
+
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[3]:
+                prints.append(valores[i-1])      
+
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println4_if(p):
+    '''
+    Println_if : PRINTLN LPAREN BOOLEAN RPAREN PUNTOCOMA
+            
+    '''
+    if BoolCondicion:
+        prints.append(p[3])
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
 
 
 #-----------------------------VAR DECLARATION----------------------------------------
@@ -88,6 +258,24 @@ def p_VariableDef2_1(p):
 
     '''variableDef2 : LET ID EQUAL INTEGER PUNTOCOMA'''
 
+    variables.append(p[2])
+
+    valores.append(p[4])
+
+
+    for i in range(len(variables)):
+
+        if variables[i-1] == p[2]:
+            valores[i-1] = p[4]
+
+
+
+
+    print (variables)
+    print (valores)
+
+    print( type(valores[0]))
+
     p[0] = VariableDef2_1(Let(p[1]),Id(p[2]),Equal(p[3]),Integer(p[4]),PuntoComa(p[5]),"VariableDef2_1")
 
 
@@ -96,15 +284,36 @@ def p_VariableDef2_2(p):
 
     '''variableDef2 : LET ID EQUAL BOOLEAN PUNTOCOMA'''
 
+    variables.append(p[2])
+
+    valores.append(p[4])
+
+
+    for i in range(len(variables)):
+
+        if variables[i-1] == p[2]:
+            valores[i-1] = p[4]
+
+    print (variables)
+    print (valores)
+
+    print( type(valores[0]))
+
     p[0] = VariableDef2_2(Let(p[1]),Id(p[2]),Equal(p[3]),Boolean(p[4]),PuntoComa(p[5]),"VariableDef2_2")
 
 
 
 def p_VariableDef2_3(p):
 
-    '''variableDef2 : LET ID EQUAL funcion PUNTOCOMA'''
+    '''variableDef2 : LET ID EQUAL STRING PUNTOCOMA'''
 
-    p[0] = VariableDef2_3(Let(p[1]),Id(p[2]),Equal(p[3]),p[4],PuntoComa(p[5]),"VariableDef2_3")
+    variables.append(p[2])
+    valores.append(p[4])
+
+    print (variables)
+    print (valores)
+
+    p[0] = VariableDef2_3(Let(p[1]),Id(p[2]),Equal(p[3]),String(p[4]),PuntoComa(p[5]),"VariableDef2_3")
 
 
 #-----------------------------------------EXPRESIONES-----------------------------------
@@ -309,14 +518,18 @@ def p_condicion6(p):
 
 
 #----------------------------------- IGUAL-------------------------------------------------
+
+BoolCondicion = False
+
 def p_Igual1(p):
 
     '''Igual : INTEGER IGUAL INTEGER'''
 
+    global BoolCondicion
     if p[1] == p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Igual1(Integer(p[1]),IGUAL(p[2]),Integer(p[3]),"Igual1")
 
@@ -326,10 +539,11 @@ def p_Igual2(p):
 
     '''Igual : ID IGUAL ID'''
 
+    global BoolCondicion
     if p[1] == p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Igual2(Id(p[1]),IGUAL(p[2]),Id(p[3]),"Igual2")    
 
@@ -339,10 +553,11 @@ def p_Igual3(p):
 
     '''Igual : INTEGER IGUAL ID'''
 
+    global BoolCondicion
     if p[1] == p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Igual3(Integer(p[1]),IGUAL(p[2]),Id(p[3]),"Igual3")    
 
@@ -350,10 +565,12 @@ def p_Igual3(p):
 
 def p_Igual4(p):
     '''Igual : ID IGUAL INTEGER'''
+
+    global BoolCondicion
     if p[1] == p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Igual4(Id(p[1]),IGUAL(p[2]),Integer(p[3]),"Igual4")    
 
@@ -365,10 +582,11 @@ def p_Diferente1(p):
 
     '''Diferente : INTEGER DIFERENTE INTEGER'''
 
+    global BoolCondicion
     if p[1] != p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
     
     p[0] = Diferente1(Integer(p[1]),DIFERENTE(p[2]),Integer(p[3]),"Diferente1")
 
@@ -376,10 +594,11 @@ def p_Diferente2(p):
 
     '''Diferente : ID DIFERENTE ID'''
 
+    global BoolCondicion
     if p[1] != p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Diferente2(Id(p[1]),DIFERENTE(p[2]),Id(p[3]),"Diferente2")    
 
@@ -387,10 +606,11 @@ def p_Diferente3(p):
 
     '''Diferente : INTEGER DIFERENTE ID'''
 
+    global BoolCondicion
     if p[1] != p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Diferente3(Integer(p[1]),DIFERENTE(p[2]),Id(p[3]),"Diferente3")
 
@@ -398,10 +618,11 @@ def p_Diferente4(p):
 
     '''Diferente : ID DIFERENTE INTEGER'''
 
+    global BoolCondicion
     if p[1] != p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Diferente4(Id(p[1]),DIFERENTE(p[2]),Integer(p[3]),"Diferente4")
 #------------------------------------MAYOR------------------------------------------------
@@ -410,10 +631,11 @@ def p_Mayor1(p):
 
     '''Mayor : INTEGER MAYOR INTEGER'''
     
+    global BoolCondicion
     if p[1] > p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayor1(Integer(p[1]),MAYOR(p[2]),Integer(p[3]),"Mayor1")
 
@@ -423,10 +645,11 @@ def p_Mayor2(p):
 
     '''Mayor : ID MAYOR ID'''
     
+    global BoolCondicion
     if p[1] > p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
     
     p[0] = Mayor2(Id(p[1]),MAYOR(p[2]),Id(p[3]),"Mayor2")
 
@@ -436,10 +659,11 @@ def p_Mayor3(p):
 
     '''Mayor : INTEGER MAYOR ID'''
     
+    global BoolCondicion
     if p[1] > p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayor3(Integer(p[1]),MAYOR(p[2]),Id(p[3]),"Mayor3")
 
@@ -449,10 +673,11 @@ def p_Mayor4(p):
 
     '''Mayor : ID MAYOR INTEGER'''
     
+    global BoolCondicion
     if p[1] > p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayor4(Id(p[1]),MAYOR(p[2]),Integer(p[3]),"Mayor4")
 
@@ -464,10 +689,11 @@ def p_Menor1(p):
 
     '''Menor : INTEGER MENOR INTEGER'''
 
+    global BoolCondicion
     if p[1] < p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menor1(Integer(p[1]),MENOR(p[2]),Integer(p[3]),"Menor1")
 
@@ -477,10 +703,11 @@ def p_Menor2(p):
 
     '''Menor : ID MENOR ID'''
 
+    global BoolCondicion
     if p[1] < p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menor2(Id(p[1]),MENOR(p[2]),Id(p[3]),"Menor2")
 
@@ -490,10 +717,11 @@ def p_Menor3(p):
 
     '''Menor : INTEGER MENOR ID'''
 
+    global BoolCondicion
     if p[1] < p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menor3(Integer(p[1]),MENOR(p[2]),Id(p[3]),"Menor3")
 
@@ -503,10 +731,11 @@ def p_Menor4(p):
 
     '''Menor : ID MENOR INTEGER'''
 
+    global BoolCondicion
     if p[1] < p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menor4(Id(p[1]),MENOR(p[2]),Integer(p[3]),"Menor4")
 
@@ -519,10 +748,11 @@ def p_Mayorigual1(p):
 
     '''Mayorigual : INTEGER MAYORIGUAL INTEGER'''
 
+    global BoolCondicion
     if p[1] >= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayorigual1(Integer(p[1]),MAYORIGUAL(p[2]),Integer(p[3]),"Mayorigual1")
 
@@ -533,10 +763,11 @@ def p_Mayorigual2(p):
 
     '''Mayorigual : ID MAYORIGUAL ID'''
 
+    global BoolCondicion
     if p[1] >= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayorigual2(Id(p[1]),MAYORIGUAL(p[2]),Id(p[3]),"Mayorigual2")
 
@@ -546,10 +777,11 @@ def p_Mayorigual3(p):
 
     '''Mayorigual : INTEGER MAYORIGUAL ID'''
 
+    global BoolCondicion
     if p[1] >= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayorigual3(Integer(p[1]),MAYORIGUAL(p[2]),Id(p[3]),"Mayorigual3")
 
@@ -559,10 +791,11 @@ def p_Mayorigual4(p):
 
     '''Mayorigual : ID MAYORIGUAL INTEGER'''
     
+    global BoolCondicion
     if p[1] >= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Mayorigual4(Id(p[1]),MAYORIGUAL(p[2]),Integer(p[3]),"Mayorigual4")
 
@@ -574,10 +807,11 @@ def p_Menorigual1(p):
 
     '''Menorigual : INTEGER MENORIGUAL INTEGER'''
 
+    global BoolCondicion
     if p[1] <= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menorigual1(Integer(p[1]),MENORIGUAL(p[2]),Integer(p[3]),"Menorigual1")
 
@@ -589,10 +823,11 @@ def p_Menorigual2(p):
 
     '''Menorigual : ID MENORIGUAL ID'''
 
+    global BoolCondicion
     if p[1] <= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menorigual2(Id(p[1]),MENORIGUAL(p[2]),Id(p[3]),"Menorigual2")
 
@@ -603,10 +838,11 @@ def p_Menorigual3(p):
 
     '''Menorigual : INTEGER MENORIGUAL ID'''
 
+    global BoolCondicion
     if p[1] <= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menorigual3(Integer(p[1]),MENORIGUAL(p[2]),Id(p[3]),"Menorigual3")
 
@@ -618,10 +854,11 @@ def p_Menorigual4(p):
 
     '''Menorigual : ID MENORIGUAL INTEGER'''
 
+    global BoolCondicion
     if p[1] <= p[3]:
-        p[0] = True
+        BoolCondicion = True
     else:
-        p[0] = False
+        BoolCondicion = False
 
     p[0] = Menorigual4(Id(p[1]),MENORIGUAL(p[2]),Integer(p[3]),"Menorigual4")
 
@@ -640,7 +877,7 @@ def p_Opera(p):
     '''
 
     #Programar If's
-
+    resultado = 0
     if p[3] == "+":
         resultado = p[5]+p[7]
     elif p[3] == "-":
@@ -654,7 +891,7 @@ def p_Opera(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),p[3],COMA(p[4]),p[5],COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
     
-    #print(resultado)
+    print(resultado)
 
 
 #--------------------------------------------------------------------------
@@ -699,8 +936,23 @@ def p_Delay(p):
     '''
     Delay : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
     '''
+
+    if p[5] == "mili":
+        time.sleep(p[3]/1000)
+        print("Delay en milisegundos")
+        
+    elif p[5] == "seg":
+        time.sleep(p[3])
+        print("Delay en segundos")
+        
+    elif p[5] == "min":
+        time.sleep(p[3]*60)
+        print("Delay en minutos")
+
+    elif type(p[3]) != int:
+        errores.append(f'Error semántico: el valor de delay no es un número')
+
     p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
-    #Programar if's
 
 #--------------------------------------------------------------------------
 
@@ -708,18 +960,16 @@ def p_Delay(p):
 def p_If1(p):
 
     '''
-    If : IF condicion LLAVEL cuerpo LLAVER
+    If : IF condicion LLAVEL cuerpo_if LLAVER
     '''
+    print(type(p[4]))
+    print(BoolCondicion)
+    if BoolCondicion:
+        print("Entro al if")
+    else:
+        pass
+
     p[0] = If1(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),"If1")
-    print(p[2])
-
-def p_I2(p):
-
-    '''
-    If : IF condicion LLAVEL cuerpo LLAVER funcion
-    '''
-    p[0] = If2(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),p[6],"If2")
-    print(p[2])
 
 #--------------------------------------------------------------------------
 
@@ -762,16 +1012,56 @@ def p_Loop(p):
 #--------------------------------------------------------------------------
 
 
-def p_Println(p):
+def p_Println1(p):
     '''
     Println : PRINTLN LPAREN STRING RPAREN PUNTOCOMA
             
     '''
 
-    #p[0] = p[3]
+    prints.append(p[3])
+
+    print(prints)
 
     p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),String(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
-    #print(p[3])
+
+def p_Println2(p):
+    '''
+    Println : PRINTLN LPAREN INTEGER RPAREN PUNTOCOMA
+            
+    '''
+
+    prints.append(p[3])
+
+    print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Integer(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+
+def p_Println3(p):
+    '''
+    Println : PRINTLN LPAREN ID RPAREN PUNTOCOMA
+            
+    '''
+
+    for i in range(len(variables)):
+        if variables[i-1] == p[3]:
+            prints.append(valores[i-1])      
+
+    print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println4(p):
+    '''
+    Println : PRINTLN LPAREN BOOLEAN RPAREN PUNTOCOMA
+            
+    '''
+
+    prints.append(p[3])
+
+    print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
 
     
 #--------------------------------------------------------------------------

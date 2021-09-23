@@ -1,0 +1,24 @@
+Inicio
+
+
+move (p);
+
+if 3<5{
+	move(c);
+} 
+
+move (p);
+
+if  3==4 {	
+	move(m);
+}
+
+
+
+main();
+
+
+Fin
+
+
+

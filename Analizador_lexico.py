@@ -105,7 +105,7 @@ def t_INTEGER(t):
     return t
 
 
-def t_BOOL(t):
+def t_BOOLEAN(t):
     r"""True|False"""
     try:
         if t.value == "True":
@@ -134,7 +134,7 @@ def t_ID(t):
     return t
 
 def t_COMENTARIO(t):
-    r"""\@"""
+    r"""\@.*"""
     pass
 
 def t_newline(t):

@@ -1,0 +1,16 @@
+Inicio
+
+println ( 2);
+
+println ( "putitos");
+
+let v = 10;
+
+println(v);
+
+main ( );
+
+Fin
+
+
+
