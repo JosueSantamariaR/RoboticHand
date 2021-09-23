@@ -634,6 +634,7 @@ class expresion5(Nodo):
         return id
 
 
+
 class expresion6(Nodo):
     def __init__(self,son1,son2,name):
         self.name = name
@@ -647,10 +648,6 @@ class expresion6(Nodo):
         else:
             self.son1.imprimir(" "+ident)
             
-        if type(self.son2) == type(tuple()):
-            self.son2[0].imprimir(" "+ident)
-        else: 
-            self.son2.imprimir(" "+ident)
 
         print (ident + "Nodo: "+self.name)
 
@@ -664,17 +661,45 @@ class expresion6(Nodo):
         else: 
             son1 = self.son1.traducir()
 
-        if type(self.son2) == type(tuple()):
-            son2 = self.son2[0].traducir()
-        else: 
-            son2 = self.son2.traducir()
-
         txt += id + "[label= "+self.name+"]"+"\n\t"
         txt += id + " -> " + son1 + "\n\t"
-        txt += id + " -> " + son2 + "\n\t"
+        
 
         return id
 
+
+
+class expresion7(Nodo):
+    def __init__(self,son1,name):
+        self.name = name
+        self.son1 = son1
+
+
+    def imprimir(self,ident):
+
+        if type(self.son1) == type(tuple()):
+            self.son1[0].imprimir(" "+ident)
+        else:
+            self.son1.imprimir(" "+ident)
+            
+
+        print (ident + "Nodo: "+self.name)
+
+
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+
+        if type(self.son1) == type(tuple()):
+            son1 = self.son1[0].traducir()
+        else: 
+            son1 = self.son1.traducir()
+
+        txt += id + "[label= "+self.name+"]"+"\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        
+
+        return id
 #--------------------------------------------------------------------------------------------
 
 class operador1(Nodo):
@@ -1125,6 +1150,7 @@ class funcion9(Nodo):
  
 
         return id
+
 
 #--------------------------------------------------------------------------------------------
 class condicion1(Nodo):
@@ -2509,7 +2535,7 @@ class Else(Nodo):
             son3 = self.son3[0].traducir()
         else: 
             son3 = self.son3.traducir()
-            
+
         son4 = self.son4.traducir()
 
 
@@ -2754,6 +2780,48 @@ class Println(Nodo):
         txt += id + " -> " + son3 + "\n\t"
         txt += id + " -> " + son4 + "\n\t"
         txt += id + " -> " + son5 + "\n\t"
+
+
+        return id
+
+class main(Nodo):
+
+    def __init__(self,son1,son2,son3,son4,name):
+        self.name = name
+        self.son1 = son1
+        self.son2 = son2
+        self.son3 = son3
+        self.son4 = son4
+
+
+
+    def imprimir(self,ident):
+
+        self.son1.imprimir(" "+ident)
+        self.son2.imprimir(" "+ident)
+        self.son3.imprimir(" "+ident)
+        self.son4.imprimir(" "+ident)
+      
+
+
+
+
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+
+        son1 = self.son1.traducir()
+        son2 = self.son2.traducir()
+        son3 = self.son3.traducir()
+        son4 = self.son4.traducir()
+        
+
+
+        txt += id + "[label= "+self.name+"]"+"\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        txt += id + " -> " + son2 + "\n\t"
+        txt += id + " -> " + son3 + "\n\t"
+        txt += id + " -> " + son4 + "\n\t"
 
 
         return id
@@ -3162,6 +3230,20 @@ class IF(Nodo):
 
     def imprimir(self,ident):
         print (ident+"IF: "+self.name)
+            
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+        txt += id + "[label= \""+self.name+"\"]"+"\n\t"
+
+        return id
+
+class MAIN(Nodo):
+    def __init__(self,name):
+        self.name = name
+
+    def imprimir(self,ident):
+        print (ident+"MAIN: "+self.name)
             
     def traducir(self):
         global txt

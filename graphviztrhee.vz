@@ -305,7 +305,17 @@ digraph G{
 	61 -> 162
 	60[label= funcion5]
 	60 -> 61
-	163[label= nodo_nulo]
+	165[label= "main"]
+	166[label= "("]
+	167[label= ")"]
+	168[label= ";"]
+	164[label= main]
+	164 -> 165
+	164 -> 166
+	164 -> 167
+	164 -> 168
+	163[label= expresion7]
+	163 -> 164
 	59[label= expresion3]
 	59 -> 60
 	59 -> 163

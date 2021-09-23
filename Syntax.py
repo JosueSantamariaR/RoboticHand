@@ -150,6 +150,11 @@ def p_expresion6(p):
 
     p[0] = expresion6(p[1],p[2],"expresion6")
 
+def p_expresion7(p):
+    
+    '''expresion : main'''
+
+    p[0] = expresion7(p[1],"expresion7")
 
 def p_expresionEmpty(p):
     
@@ -254,6 +259,7 @@ def p_funcion9(p):
     '''funcion : Else'''
 
     p[0] = funcion9(p[1],"funcion9")
+
 
 
 
@@ -768,7 +774,19 @@ def p_Println(p):
     #print(p[3])
 
     
+#--------------------------------------------------------------------------
 
+
+def p_main(p):
+    '''
+    main : MAIN LPAREN RPAREN PUNTOCOMA
+            
+    '''
+
+    #p[0] = p[3]
+
+    p[0] = main(MAIN(p[1]),LPAREN(p[2]),RPAREN(p[3]),PuntoComa(p[4]),"main")
+    #print(p[3])
 
 #------------------------------------------EMPTY & ERRORS------------------------------------------
 

@@ -20,7 +20,8 @@ reservadas = { 'Inicio': 'INICIO',
                'fn': 'FN',
                'println': 'PRINTLN',
                'move': 'MOVE',
-               'delay': 'DELAY'
+               'delay': 'DELAY',
+               'main': 'MAIN'
             }
 
 

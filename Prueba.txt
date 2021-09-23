@@ -25,6 +25,7 @@ while (3<5){
 
 }
 
+main();
 
 
 Fin
