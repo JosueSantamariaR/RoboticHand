@@ -75,147 +75,28 @@ def p_cuerpo_if2(p):
 #---------------------------------------Prueba IF---------------------------------------
 
 def p_expresion_if(p):
-    '''expresion_if : funcion_if expresion'''
-
+    '''expresion_if : funcion_if expresion_if'''
     p[0] = expresion_if(p[1], p[2], "expresion_if")
 
-def p_funcion_if1(p):
-    '''funcion_if : Move_if'''
+def p_expresionEmpty_if(p):
+    '''expresion_if : empty empty'''
+    p[0] = Null()
 
-    p[0] = funcion_if1(p[1], "funcion_if1")
+def p_funcion_if1(p):
+    '''funcion_if : Move_if expresion_if'''
+    p[0] = funcion_if1(p[1], p[2], "funcion_if1")
 
 def p_funcion_if2(p):
-    '''funcion_if : Delay_if'''
-    p[0] = funcion_if2(p[1], "funcion_if2")
+    '''funcion_if : Delay_if expresion_if'''
+    p[0] = funcion_if2(p[1], p[2], "funcion_if2")
 
 def p_funcion_if3(p):
-    '''funcion_if : Opera_if'''
-    p[0] = funcion_if3(p[1], "funcion_if3")
+    '''funcion_if : Opera_if expresion_if'''
+    p[0] = funcion_if3(p[1], p[2], "funcion_if3")
 
 def p_funcion_if4(p):
-    '''funcion_if : Println_if'''
-    p[0] = funcion_if4(p[1], "funcion_if4")
-
-def p_Move_if(p):
-    '''Move_if : MOVE LPAREN ID RPAREN PUNTOCOMA'''
-
-    if BoolCondicion:
-        if p[3] == "p":
-            #write_read("1")
-            print("Moviendo pulgar")
-
-        elif p[3] == "i":
-            #write_read("2")
-            print("Moviendo índice")
-
-        elif p[3] == "c":
-            #write_read("3")
-            print ("Moviento centro")
-
-        elif p[3] == "a":
-            #write_read("4")
-            print ("Moviendo anular")
-
-        elif p[3] == "m":
-            #write_read("5")
-            print ("Moviendo meñique")
-        else:
-            print("Error, no es un dedo " + str(p[2]))
-
-    p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
-
-def p_Delay_if(p):
-    '''
-    Delay_if : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
-    '''
-    if BoolCondicion:
-        if p[5] == "mili":
-            time.sleep(p[3]/1000)
-            print("Delay en milisegundos")
-            
-        elif p[5] == "seg":
-            time.sleep(p[3])
-            print("Delay en segundos")
-            
-        elif p[5] == "min":
-            time.sleep(p[3]*60)
-            print("Delay en minutos")
-
-        elif type(p[3]) != int:
-            errores.append(f'Error semántico: el valor de delay no es un número')
-    
-    p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
-
-def p_Opera_if(p):
-    '''
-    Opera_if : OPERA LPAREN operador COMA expresion COMA expresion RPAREN PUNTOCOMA
-    '''
-
-    #Programar If's
-    if BoolCondicion:
-        if p[3] == "+":
-            resultado = p[5]+p[7]
-        elif p[3] == "-":
-            resultado = p[5]-p[7]
-        elif p[3] == "*":
-            resultado = p[5]*p[7]
-        elif p[3] == "/":
-            resultado = p[5]//p[7]
-        elif p[3] == "^":
-            resultado = p[5]**p[7]
-    
-    #print(resultado)
-
-def p_Println1_if(p):
-    '''
-    Println_if : PRINTLN LPAREN STRING RPAREN PUNTOCOMA
-            
-    '''
-    if BoolCondicion:
-        prints.append(p[3])
-        print(prints)
-
-    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),String(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
-
-def p_Println2_if(p):
-    '''
-    Println_if : PRINTLN LPAREN INTEGER RPAREN PUNTOCOMA
-            
-    '''
-
-    if BoolCondicion:
-        prints.append(p[3])
-
-        print(prints)
-
-    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Integer(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
-
-
-def p_Println3_if(p):
-    '''
-    Println_if : PRINTLN LPAREN ID RPAREN PUNTOCOMA
-            
-    '''
-
-    if BoolCondicion:
-        for i in range(len(variables)):
-            if variables[i-1] == p[3]:
-                prints.append(valores[i-1])      
-
-        print(prints)
-
-    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
-
-def p_Println4_if(p):
-    '''
-    Println_if : PRINTLN LPAREN BOOLEAN RPAREN PUNTOCOMA
-            
-    '''
-    if BoolCondicion:
-        prints.append(p[3])
-        print(prints)
-
-    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+    '''funcion_if : Println_if expresion_if'''
+    p[0] = funcion_if4(p[1], p[2], "funcion_if4")
 
 
 #-----------------------------VAR DECLARATION----------------------------------------
@@ -893,6 +774,25 @@ def p_Opera(p):
     
     print(resultado)
 
+def p_Opera_if(p):
+    '''
+    Opera_if : OPERA LPAREN operador COMA expresion COMA expresion RPAREN PUNTOCOMA
+    '''
+
+    #Programar If's
+    if BoolCondicion:
+        if p[3] == "+":
+            resultado = p[5]+p[7]
+        elif p[3] == "-":
+            resultado = p[5]-p[7]
+        elif p[3] == "*":
+            resultado = p[5]*p[7]
+        elif p[3] == "/":
+            resultado = p[5]//p[7]
+        elif p[3] == "^":
+            resultado = p[5]**p[7]
+    
+    #print(resultado)
 
 #--------------------------------------------------------------------------
 def p_Move(p):
@@ -927,6 +827,33 @@ def p_Move(p):
 
     p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
 
+def p_Move_if(p):
+    '''Move_if : MOVE LPAREN ID RPAREN PUNTOCOMA'''
+
+    if BoolCondicion:
+        if p[3] == "p":
+            #write_read("1")
+            print("Moviendo pulgar")
+
+        elif p[3] == "i":
+            #write_read("2")
+            print("Moviendo índice")
+
+        elif p[3] == "c":
+            #write_read("3")
+            print ("Moviento centro")
+
+        elif p[3] == "a":
+            #write_read("4")
+            print ("Moviendo anular")
+
+        elif p[3] == "m":
+            #write_read("5")
+            print ("Moviendo meñique")
+        else:
+            print("Error, no es un dedo " + str(p[2]))
+
+    p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
 
 
 #--------------------------------------------------------------------------
@@ -936,22 +863,46 @@ def p_Delay(p):
     '''
     Delay : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
     '''
-
-    if p[5] == "mili":
+    print("aqui va entrando")
+    if p[5].strip('"') == "mili":
         time.sleep(p[3]/1000)
         print("Delay en milisegundos")
         
-    elif p[5] == "seg":
+    elif p[5].strip('"') == "seg":
         time.sleep(p[3])
         print("Delay en segundos")
         
-    elif p[5] == "min":
+    elif p[5].strip('"') == "min":
         time.sleep(p[3]*60)
         print("Delay en minutos")
 
     elif type(p[3]) != int:
         errores.append(f'Error semántico: el valor de delay no es un número')
 
+    p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
+
+def p_Delay_if(p):
+    '''
+    Delay_if : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
+    '''
+    print("aqui esta entrando2")
+    print(p[5])
+    if BoolCondicion:
+        if p[5].strip('"') == "mili":
+            time.sleep(p[3]/1000)
+            print("Delay en milisegundos")
+            
+        elif p[5].strip('"') == "seg":
+            time.sleep(p[3])
+            print("Delay en segundos")
+            
+        elif p[5].strip('"') == "min":
+            time.sleep(p[3]*60)
+            print("Delay en minutos")
+
+        elif type(p[3]) != int:
+            errores.append(f'Error semántico: el valor de delay no es un número')
+    
     p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
 
 #--------------------------------------------------------------------------
@@ -967,6 +918,9 @@ def p_If1(p):
     if BoolCondicion:
         print("Entro al if")
     else:
+        pass
+        pass
+        pass
         pass
 
     p[0] = If1(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),"If1")
@@ -1060,6 +1014,58 @@ def p_Println4(p):
     prints.append(p[3])
 
     print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+
+def p_Println1_if(p):
+    '''
+    Println_if : PRINTLN LPAREN STRING RPAREN PUNTOCOMA
+            
+    '''
+    if BoolCondicion:
+        prints.append(p[3])
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),String(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println2_if(p):
+    '''
+    Println_if : PRINTLN LPAREN INTEGER RPAREN PUNTOCOMA
+            
+    '''
+
+    if BoolCondicion:
+        prints.append(p[3])
+
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Integer(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+
+def p_Println3_if(p):
+    '''
+    Println_if : PRINTLN LPAREN ID RPAREN PUNTOCOMA
+            
+    '''
+
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[3]:
+                prints.append(valores[i-1])      
+
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println4_if(p):
+    '''
+    Println_if : PRINTLN LPAREN BOOLEAN RPAREN PUNTOCOMA
+            
+    '''
+    if BoolCondicion:
+        prints.append(p[3])
+        print(prints)
 
     p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
 
