@@ -18,6 +18,7 @@ data = []
 
 def p_Start(p):
 
+
     '''Start : code'''
 
     p[0] = Start(p[1],"Start")
@@ -246,6 +247,13 @@ def p_funcion8(p):
     '''funcion : Println'''
 
     p[0] = funcion8(p[1],"funcion8")
+
+    
+def p_funcion9(p):
+
+    '''funcion : Else'''
+
+    p[0] = funcion9(p[1],"funcion9")
 
 
 
@@ -691,18 +699,33 @@ def p_Delay(p):
 #--------------------------------------------------------------------------
 
 
-def p_If(p):
+def p_If1(p):
 
     '''
     If : IF condicion LLAVEL cuerpo LLAVER
     '''
-    p[0] = If(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),"If")
+    p[0] = If1(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),"If1")
+    print(p[2])
+
+def p_I2(p):
+
+    '''
+    If : IF condicion LLAVEL cuerpo LLAVER funcion
+    '''
+    p[0] = If2(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),p[6],"If2")
     print(p[2])
 
 #--------------------------------------------------------------------------
 
+def p_Else(p):
 
+    '''
+    Else : ELSE LLAVEL cuerpo LLAVER
+    '''
+    p[0] = Else(ELSE(p[1]),LLAVEL(p[2]),p[3],LLAVER(p[4]),"Else")
+    #print(p[2])
 
+#--------------------------------------------------------------------------
 def p_While(p):
     '''
     While : WHILE LPAREN  condicion  RPAREN LLAVEL cuerpo LLAVER

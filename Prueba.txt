@@ -1,7 +1,12 @@
 Inicio
 
-move (p);
 
+move (p);
+if 3<5{
+	println("hola");
+} else {
+	println("else");
+}
 delay(5,"mili");
 
 while (3<5){
