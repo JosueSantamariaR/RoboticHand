@@ -10,6 +10,9 @@ if 3<5{
 move (p);
 
 if  3==4 {	
+	if 1==2{
+		move(a);
+	}
 	move(m);
 }
 
@@ -19,6 +22,7 @@ main();
 
 
 Fin
+
 
 
 

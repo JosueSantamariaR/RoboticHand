@@ -1,0 +1,35 @@
+Inicio
+
+fn sumar(){
+    println("cruck");
+};
+
+move (p);
+
+if 3<5{
+    println("hola");
+} else {
+    println("else");
+}
+
+delay(5,"mili");
+
+while (3<5){
+
+    move(i);
+    opera(+,5,4);
+    move(p);
+    println("hola");
+
+    if  3==4 {
+        move(c);
+        move(m);
+        opera(-,2,6);
+    }
+
+}
+
+main();
+
+
+Fin

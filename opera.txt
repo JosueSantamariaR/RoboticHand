@@ -1,0 +1,13 @@
+Inicio 
+
+opera ( +,2,opera ( +,1,5););
+
+opera ( -,2,opera ( -,1,5););
+
+main ( );
+
+Fin
+
+
+
+

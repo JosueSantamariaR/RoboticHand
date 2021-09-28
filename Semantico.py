@@ -183,6 +183,142 @@ class cuerpo3(Nodo):
 
         return id
 
+class cuerpo4(Nodo):
+    def init(self,son1,son2,name):
+        self.name = name
+        self.son1 = son1
+        self.son2 = son2
+
+
+    def imprimir(self,ident):
+
+        if type(self.son1) == type(tuple()):
+            self.son1[0].imprimir(" "+ident)
+        else: 
+            self.son1.imprimir(" "+ident)
+
+        if type(self.son2) == type(tuple()):
+            self.son2[0].imprimir(" "+ident)
+        else: 
+            self.son2.imprimir(" "+ident)
+
+        print (ident + "Nodo: "+self.name)
+
+
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+
+        if type(self.son1) == type(tuple()):
+            son1 = self.son1[0].traducir()
+        else: 
+            son1 = self.son1.traducir()
+
+        if type(self.son2) == type(tuple()):
+            son2 = self.son2[0].traducir()
+        else: 
+            son2 = self.son2.traducir()
+
+        txt += id + "[label= "+self.name+"]"+"\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        txt += id + " -> " + son2 + "\n\t"
+
+        return id
+
+
+
+
+class fn(Nodo):
+
+    def __init__(self,son1,son2,son3,son4,son5,son6,son7,son8,son9,name):
+        self.name = name
+        self.son1 = son1
+        self.son2 = son2
+        self.son3 = son3
+        self.son4 = son4
+        self.son5 = son5
+        self.son6 = son6
+        self.son7 = son7
+        self.son8 = son8
+        self.son9 = son9
+
+    def imprimir(self,ident):
+
+        self.son1.imprimir(" "+ident)
+        self.son2.imprimir(" "+ident)
+        self.son3.imprimir(" "+ident)
+        self.son4.imprimir(" "+ident)
+        self.son5.imprimir(" "+ident)
+
+        if type(self.son6) == type(tuple()):
+            self.son6[0].imprimir(" "+ident)
+        else: 
+            self.son6.imprimir(" "+ident)
+
+        self.son7.imprimir(" "+ident)
+        self.son8.imprimir(" "+ident)
+
+        if type(self.son9) == type(tuple()):
+            self.son9[0].imprimir(" "+ident)
+        else: 
+            self.son9.imprimir(" "+ident)
+
+
+
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+
+        son1 = self.son1.traducir()
+        son2 = self.son2.traducir()
+        son3 = self.son3.traducir()
+        son4 = self.son4.traducir()
+        son5 = self.son5.traducir()
+
+        if type(self.son6) == type(tuple()):
+            son6 = self.son6[0].traducir()
+        else: 
+            son6 = self.son6.traducir()
+
+        son7 = self.son7.traducir()
+        son8 = self.son8.traducir()
+        
+        if type(self.son9) == type(tuple()):
+            son9 = self.son9[0].traducir()
+        else: 
+            son9 = self.son9.traducir()
+    
+
+        txt += id + "[label= "+self.name+"]"+"\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        txt += id + " -> " + son2 + "\n\t"
+        txt += id + " -> " + son3 + "\n\t"
+        txt += id + " -> " + son4 + "\n\t"
+        txt += id + " -> " + son5 + "\n\t"
+        txt += id + " -> " + son6 + "\n\t"
+        txt += id + " -> " + son7 + "\n\t"
+        txt += id + " -> " + son8 + "\n\t"
+        txt += id + " -> " + son9 + "\n\t"
+
+        return id
+
+
+
+
+class FN(Nodo):
+    def init(self, name):
+        self.name = name
+
+    def imprimir(self,ident):
+        print (ident+"FN: "+self.name)
+
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+        txt += id + "[label= ""+self.name+""]"+"\n\t"
+        return id
+
+
 class cuerpo_if2(Nodo):
     def __init__(self,son1,name):
         self.name = name
@@ -210,6 +346,48 @@ class cuerpo_if2(Nodo):
             
         txt += id + "[label= "+self.name+"]"+"\n\t"
         txt += id + " -> " + son1 + "\n\t"
+
+        return id
+
+class expresion_if1(Nodo):
+    def __init__(self,son1, son2, name):
+        self.name = name
+        self.son1 = son1
+        self.son2 = son2
+        
+
+    def imprimir(self,ident):
+        
+        if type(self.son1) == type(tuple()):
+            self.son1[0].imprimir(" "+ident)
+        else: 
+            self.son1.imprimir(" "+ident)
+
+        if type(self.son2) == type(tuple()):
+            self.son2[0].imprimir(" "+ident)
+        else: 
+            self.son2.imprimir(" "+ident)
+
+        print (ident + "Nodo: "+self.name)
+
+
+    def traducir(self):
+        global txt
+        id = incrementar_cont()
+
+        if type(self.son1) == type(tuple()):
+            son1 = self.son1[0].traducir()
+        else: 
+            son1 = self.son1.traducir()
+        
+        if type(self.son2) == type(tuple()):
+            son2 = self.son2[0].traducir()
+        else: 
+            son2 = self.son2.traducir()
+            
+        txt += id + "[label= "+self.name+"]"+"\n\t"
+        txt += id + " -> " + son1 + "\n\t"
+        txt += id + " -> " + son2 + "\n\t"
 
         return id
 

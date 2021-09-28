@@ -1,6 +1,8 @@
 Inicio
 
-
+fn sumar(){
+	println("cruck");
+};
 move (p);
 if 3<5{
 	println("hola");

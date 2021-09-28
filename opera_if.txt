@@ -1,0 +1,23 @@
+Inicio
+
+
+let x = 2;
+
+let y = 5;
+
+if 3<5{
+	opera(/,y,x);
+} 
+
+
+
+
+main();
+
+
+Fin
+
+
+
+
+
