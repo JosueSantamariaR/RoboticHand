@@ -1,676 +1,2096 @@
 digraph G{
-	 6[label= "let"]
-	7[label= "x"]
-	8[label= "="]
-	9[label= "2"]
-	10[label= ";"]
-	5[label= VariableDef2_1]
-	5 -> 6
-	5 -> 7
-	5 -> 8
-	5 -> 9
-	5 -> 10
-	14[label= "let"]
-	15[label= "y"]
-	16[label= "="]
-	17[label= "5"]
+	 5[label= fn]
+	6[label= "sumar"]
+	7[label= "("]
+	8[label= ")"]
+	9[label= "{"]
+	14[label= "println"]
+	15[label= "("]
+	16[label= "cruck"]
+	17[label= ")"]
 	18[label= ";"]
-	13[label= VariableDef2_1]
+	13[label= Println]
 	13 -> 14
 	13 -> 15
 	13 -> 16
 	13 -> 17
 	13 -> 18
-	23[label= "if"]
-	26[label= "3"]
-	27[label= "<"]
-	28[label= "5"]
-	25[label= Menor1]
+	12[label= funcion8]
+	12 -> 13
+	19[label= nodo_nulo]
+	11[label= expresion3]
+	11 -> 12
+	11 -> 19
+	10[label= cuerpo2]
+	10 -> 11
+	20[label= "}"]
+	21[label= ";"]
+	22[label= nodo_nulo]
+	4[label= fn]
+	4 -> 5
+	4 -> 6
+	4 -> 7
+	4 -> 8
+	4 -> 9
+	4 -> 10
+	4 -> 20
+	4 -> 21
+	4 -> 22
+	27[label= "move"]
+	28[label= "("]
+	29[label= "p"]
+	30[label= ")"]
+	31[label= ";"]
+	26[label= Move]
+	26 -> 27
+	26 -> 28
+	26 -> 29
+	26 -> 30
+	26 -> 31
+	25[label= funcion2]
 	25 -> 26
-	25 -> 27
-	25 -> 28
-	29[label= nodo_nulo]
-	24[label= condicion4]
-	24 -> 25
-	24 -> 29
-	30[label= "{"]
-	35[label= "opera"]
-	36[label= "("]
-	37[label= "-"]
-	38[label= ","]
-	39[label= "y"]
-	40[label= ","]
-	41[label= "x"]
-	42[label= ")"]
-	43[label= ";"]
-	34[label= Opera]
+	35[label= "if"]
+	38[label= "3"]
+	39[label= "<"]
+	40[label= "5"]
+	37[label= Menor1]
+	37 -> 38
+	37 -> 39
+	37 -> 40
+	41[label= nodo_nulo]
+	36[label= condicion4]
+	36 -> 37
+	36 -> 41
+	42[label= "{"]
+	47[label= "println"]
+	48[label= "("]
+	49[label= "hola"]
+	50[label= ")"]
+	51[label= ";"]
+	46[label= Println]
+	46 -> 47
+	46 -> 48
+	46 -> 49
+	46 -> 50
+	46 -> 51
+	52[label= nodo_nulo]
+	45[label= funcion_if4]
+	45 -> 46
+	45 -> 52
+	53[label= nodo_nulo]
+	44[label= expresion_if]
+	44 -> 45
+	44 -> 53
+	43[label= cuerpo_if2]
+	43 -> 44
+	54[label= "}"]
+	55[label= "else"]
+	56[label= "{"]
+	61[label= "println"]
+	62[label= "("]
+	63[label= "else"]
+	64[label= ")"]
+	65[label= ";"]
+	60[label= Println]
+	60 -> 61
+	60 -> 62
+	60 -> 63
+	60 -> 64
+	60 -> 65
+	66[label= nodo_nulo]
+	59[label= funcion_else4]
+	59 -> 60
+	59 -> 66
+	67[label= nodo_nulo]
+	58[label= expresion_else]
+	58 -> 59
+	58 -> 67
+	57[label= cuerpo_else]
+	57 -> 58
+	68[label= "}"]
+	34[label= If2]
 	34 -> 35
 	34 -> 36
-	34 -> 37
-	34 -> 38
-	34 -> 39
-	34 -> 40
-	34 -> 41
 	34 -> 42
 	34 -> 43
-	44[label= nodo_nulo]
-	33[label= funcion_if3]
+	34 -> 54
+	34 -> 55
+	34 -> 56
+	34 -> 57
+	34 -> 68
+	33[label= funcion4]
 	33 -> 34
-	33 -> 44
-	45[label= nodo_nulo]
-	32[label= expresion_if]
-	32 -> 33
-	32 -> 45
-	31[label= cuerpo_if2]
-	31 -> 32
-	46[label= "}"]
-	22[label= If1]
-	22 -> 23
-	22 -> 24
-	22 -> 30
-	22 -> 31
-	22 -> 46
-	21[label= funcion4]
-	21 -> 22
-	49[label= "main"]
-	50[label= "("]
-	51[label= ")"]
-	52[label= ";"]
-	48[label= main]
-	48 -> 49
-	48 -> 50
-	48 -> 51
-	48 -> 52
-	47[label= expresion7]
-	47 -> 48
-	20[label= expresion3]
-	20 -> 21
-	20 -> 47
-	19[label= cuerpo2]
-	19 -> 20
-	12[label= Variable2]
-	12 -> 13
-	12 -> 19
-	11[label= cuerpo1]
-	11 -> 12
-	4[label= Variable2]
-	4 -> 5
-	4 -> 11
-	3[label= cuerpo1]
-	3 -> 4
-	2[label= code]
-	2 -> 3
-	1[label= Start]
-	1->2
-	58[label= "let"]
-	59[label= "x"]
-	60[label= "="]
-	61[label= "2"]
-	62[label= ";"]
-	57[label= VariableDef2_1]
-	57 -> 58
-	57 -> 59
-	57 -> 60
-	57 -> 61
-	57 -> 62
-	66[label= "let"]
-	67[label= "y"]
-	68[label= "="]
-	69[label= "5"]
-	70[label= ";"]
-	65[label= VariableDef2_1]
-	65 -> 66
-	65 -> 67
-	65 -> 68
-	65 -> 69
-	65 -> 70
-	75[label= "if"]
-	78[label= "3"]
-	79[label= "<"]
-	80[label= "5"]
-	77[label= Menor1]
-	77 -> 78
-	77 -> 79
-	77 -> 80
-	81[label= nodo_nulo]
-	76[label= condicion4]
-	76 -> 77
-	76 -> 81
-	82[label= "{"]
-	87[label= "opera"]
-	88[label= "("]
-	89[label= "+"]
-	90[label= ","]
-	91[label= "y"]
-	92[label= ","]
-	93[label= "x"]
-	94[label= ")"]
-	95[label= ";"]
-	86[label= Opera]
-	86 -> 87
-	86 -> 88
-	86 -> 89
-	86 -> 90
-	86 -> 91
-	86 -> 92
-	86 -> 93
-	86 -> 94
-	86 -> 95
-	96[label= nodo_nulo]
-	85[label= funcion_if3]
-	85 -> 86
-	85 -> 96
-	97[label= nodo_nulo]
-	84[label= expresion_if]
-	84 -> 85
-	84 -> 97
-	83[label= cuerpo_if2]
-	83 -> 84
-	98[label= "}"]
-	74[label= If1]
-	74 -> 75
-	74 -> 76
-	74 -> 82
-	74 -> 83
-	74 -> 98
-	73[label= funcion4]
-	73 -> 74
-	101[label= "main"]
-	102[label= "("]
-	103[label= ")"]
-	104[label= ";"]
-	100[label= main]
-	100 -> 101
-	100 -> 102
-	100 -> 103
-	100 -> 104
-	99[label= expresion7]
-	99 -> 100
-	72[label= expresion3]
-	72 -> 73
-	72 -> 99
-	71[label= cuerpo2]
+	72[label= "delay"]
+	73[label= "("]
+	74[label= "3"]
+	75[label= ","]
+	76[label= "seg"]
+	77[label= ")"]
+	78[label= ";"]
+	71[label= Delay]
 	71 -> 72
-	64[label= Variable2]
-	64 -> 65
-	64 -> 71
-	63[label= cuerpo1]
-	63 -> 64
-	56[label= Variable2]
-	56 -> 57
-	56 -> 63
-	55[label= cuerpo1]
-	55 -> 56
-	54[label= code]
-	54 -> 55
-	53[label= Start]
-	53->54
-	110[label= "let"]
-	111[label= "x"]
-	112[label= "="]
-	113[label= "2"]
+	71 -> 73
+	71 -> 74
+	71 -> 75
+	71 -> 76
+	71 -> 77
+	71 -> 78
+	70[label= funcion3]
+	70 -> 71
+	82[label= "move"]
+	83[label= "("]
+	84[label= "i"]
+	85[label= ")"]
+	86[label= ";"]
+	81[label= Move]
+	81 -> 82
+	81 -> 83
+	81 -> 84
+	81 -> 85
+	81 -> 86
+	80[label= funcion2]
+	80 -> 81
+	90[label= "opera"]
+	91[label= "("]
+	92[label= "+"]
+	93[label= ","]
+	94[label= "5"]
+	95[label= ","]
+	96[label= "4"]
+	97[label= ")"]
+	98[label= ";"]
+	89[label= Opera]
+	89 -> 90
+	89 -> 91
+	89 -> 92
+	89 -> 93
+	89 -> 94
+	89 -> 95
+	89 -> 96
+	89 -> 97
+	89 -> 98
+	88[label= funcion1]
+	88 -> 89
+	102[label= "move"]
+	103[label= "("]
+	104[label= "p"]
+	105[label= ")"]
+	106[label= ";"]
+	101[label= Move]
+	101 -> 102
+	101 -> 103
+	101 -> 104
+	101 -> 105
+	101 -> 106
+	100[label= funcion2]
+	100 -> 101
+	110[label= "println"]
+	111[label= "("]
+	112[label= "hola"]
+	113[label= ")"]
 	114[label= ";"]
-	109[label= VariableDef2_1]
+	109[label= Println]
 	109 -> 110
 	109 -> 111
 	109 -> 112
 	109 -> 113
 	109 -> 114
-	118[label= "let"]
-	119[label= "y"]
-	120[label= "="]
-	121[label= "5"]
-	122[label= ";"]
-	117[label= VariableDef2_1]
-	117 -> 118
-	117 -> 119
-	117 -> 120
-	117 -> 121
-	117 -> 122
-	127[label= "if"]
-	130[label= "3"]
-	131[label= "<"]
-	132[label= "5"]
-	129[label= Menor1]
+	108[label= funcion8]
+	108 -> 109
+	118[label= "if"]
+	121[label= "3"]
+	122[label= "=="]
+	123[label= "4"]
+	120[label= Igual1]
+	120 -> 121
+	120 -> 122
+	120 -> 123
+	124[label= nodo_nulo]
+	119[label= condicion1]
+	119 -> 120
+	119 -> 124
+	125[label= "{"]
+	130[label= "move"]
+	131[label= "("]
+	132[label= "c"]
+	133[label= ")"]
+	134[label= ";"]
+	129[label= Move]
 	129 -> 130
 	129 -> 131
 	129 -> 132
-	133[label= nodo_nulo]
-	128[label= condicion4]
-	128 -> 129
-	128 -> 133
-	134[label= "{"]
-	139[label= "opera"]
-	140[label= "("]
-	141[label= "^"]
-	142[label= ","]
-	143[label= "y"]
-	144[label= ","]
-	145[label= "x"]
-	146[label= ")"]
-	147[label= ";"]
-	138[label= Opera]
-	138 -> 139
-	138 -> 140
-	138 -> 141
-	138 -> 142
-	138 -> 143
-	138 -> 144
-	138 -> 145
-	138 -> 146
-	138 -> 147
-	148[label= nodo_nulo]
-	137[label= funcion_if3]
+	129 -> 133
+	129 -> 134
+	138[label= "move"]
+	139[label= "("]
+	140[label= "m"]
+	141[label= ")"]
+	142[label= ";"]
+	137[label= Move]
 	137 -> 138
-	137 -> 148
-	149[label= nodo_nulo]
-	136[label= expresion_if]
+	137 -> 139
+	137 -> 140
+	137 -> 141
+	137 -> 142
+	146[label= "opera"]
+	147[label= "("]
+	148[label= "-"]
+	149[label= ","]
+	150[label= "2"]
+	151[label= ","]
+	152[label= "6"]
+	153[label= ")"]
+	154[label= ";"]
+	145[label= Opera]
+	145 -> 146
+	145 -> 147
+	145 -> 148
+	145 -> 149
+	145 -> 150
+	145 -> 151
+	145 -> 152
+	145 -> 153
+	145 -> 154
+	155[label= nodo_nulo]
+	144[label= funcion_if3]
+	144 -> 145
+	144 -> 155
+	156[label= nodo_nulo]
+	143[label= expresion_if]
+	143 -> 144
+	143 -> 156
+	136[label= funcion_if1]
 	136 -> 137
-	136 -> 149
-	135[label= cuerpo_if2]
+	136 -> 143
+	157[label= nodo_nulo]
+	135[label= expresion_if]
 	135 -> 136
-	150[label= "}"]
-	126[label= If1]
+	135 -> 157
+	128[label= funcion_if1]
+	128 -> 129
+	128 -> 135
+	158[label= nodo_nulo]
+	127[label= expresion_if]
+	127 -> 128
+	127 -> 158
+	126[label= cuerpo_if2]
 	126 -> 127
-	126 -> 128
-	126 -> 134
-	126 -> 135
-	126 -> 150
-	125[label= funcion4]
-	125 -> 126
-	153[label= "main"]
-	154[label= "("]
-	155[label= ")"]
-	156[label= ";"]
-	152[label= main]
-	152 -> 153
-	152 -> 154
-	152 -> 155
-	152 -> 156
-	151[label= expresion7]
-	151 -> 152
-	124[label= expresion3]
-	124 -> 125
-	124 -> 151
-	123[label= cuerpo2]
-	123 -> 124
-	116[label= Variable2]
+	159[label= "}"]
+	117[label= If1]
+	117 -> 118
+	117 -> 119
+	117 -> 125
+	117 -> 126
+	117 -> 159
+	116[label= funcion4]
 	116 -> 117
-	116 -> 123
-	115[label= cuerpo1]
-	115 -> 116
-	108[label= Variable2]
-	108 -> 109
-	108 -> 115
-	107[label= cuerpo1]
-	107 -> 108
-	106[label= code]
-	106 -> 107
-	105[label= Start]
-	105->106
-	162[label= "let"]
-	163[label= "x"]
-	164[label= "="]
-	165[label= "2"]
-	166[label= ";"]
-	161[label= VariableDef2_1]
+	162[label= "main"]
+	163[label= "("]
+	164[label= ")"]
+	165[label= ";"]
+	161[label= main]
 	161 -> 162
 	161 -> 163
 	161 -> 164
 	161 -> 165
-	161 -> 166
-	170[label= "let"]
-	171[label= "y"]
-	172[label= "="]
-	173[label= "5"]
-	174[label= ";"]
-	169[label= VariableDef2_1]
-	169 -> 170
-	169 -> 171
-	169 -> 172
-	169 -> 173
-	169 -> 174
-	179[label= "opera"]
+	160[label= expresion7]
+	160 -> 161
+	115[label= expresion3]
+	115 -> 116
+	115 -> 160
+	107[label= expresion3]
+	107 -> 108
+	107 -> 115
+	99[label= expresion3]
+	99 -> 100
+	99 -> 107
+	87[label= expresion3]
+	87 -> 88
+	87 -> 99
+	79[label= expresion3]
+	79 -> 80
+	79 -> 87
+	69[label= expresion3]
+	69 -> 70
+	69 -> 79
+	32[label= expresion3]
+	32 -> 33
+	32 -> 69
+	24[label= expresion3]
+	24 -> 25
+	24 -> 32
+	23[label= cuerpo2]
+	23 -> 24
+	3[label= cuerpo3]
+	3 -> 4
+	3 -> 23
+	2[label= code]
+	2 -> 3
+	1[label= Start]
+	1->2
+	170[label= fn]
+	171[label= "sumar"]
+	172[label= "("]
+	173[label= ")"]
+	174[label= "{"]
+	179[label= "println"]
 	180[label= "("]
-	181[label= "^"]
-	182[label= ","]
-	183[label= "y"]
-	184[label= ","]
-	185[label= "x"]
-	186[label= ")"]
-	187[label= ";"]
-	178[label= Opera]
+	181[label= "cruck"]
+	182[label= ")"]
+	183[label= ";"]
+	178[label= Println]
 	178 -> 179
 	178 -> 180
 	178 -> 181
 	178 -> 182
 	178 -> 183
-	178 -> 184
-	178 -> 185
-	178 -> 186
-	178 -> 187
-	177[label= funcion1]
+	177[label= funcion8]
 	177 -> 178
-	190[label= "main"]
-	191[label= "("]
-	192[label= ")"]
-	193[label= ";"]
-	189[label= main]
-	189 -> 190
-	189 -> 191
-	189 -> 192
-	189 -> 193
-	188[label= expresion7]
-	188 -> 189
+	184[label= nodo_nulo]
 	176[label= expresion3]
 	176 -> 177
-	176 -> 188
+	176 -> 184
 	175[label= cuerpo2]
 	175 -> 176
-	168[label= Variable2]
-	168 -> 169
-	168 -> 175
-	167[label= cuerpo1]
-	167 -> 168
-	160[label= Variable2]
-	160 -> 161
-	160 -> 167
-	159[label= cuerpo1]
-	159 -> 160
-	158[label= code]
-	158 -> 159
-	157[label= Start]
-	157->158
-	199[label= "let"]
-	200[label= "x"]
-	201[label= "="]
-	202[label= "2"]
-	203[label= ";"]
-	198[label= VariableDef2_1]
-	198 -> 199
-	198 -> 200
-	198 -> 201
-	198 -> 202
-	198 -> 203
-	207[label= "let"]
-	208[label= "y"]
-	209[label= "="]
-	210[label= "5"]
-	211[label= ";"]
-	206[label= VariableDef2_1]
-	206 -> 207
-	206 -> 208
-	206 -> 209
-	206 -> 210
-	206 -> 211
-	216[label= "opera"]
-	217[label= "("]
-	218[label= "/"]
-	219[label= ","]
-	220[label= "y"]
-	221[label= ","]
-	222[label= "x"]
-	223[label= ")"]
-	224[label= ";"]
-	215[label= Opera]
-	215 -> 216
-	215 -> 217
-	215 -> 218
-	215 -> 219
-	215 -> 220
-	215 -> 221
-	215 -> 222
-	215 -> 223
-	215 -> 224
-	214[label= funcion1]
-	214 -> 215
-	227[label= "main"]
-	228[label= "("]
+	185[label= "}"]
+	186[label= ";"]
+	187[label= nodo_nulo]
+	169[label= fn]
+	169 -> 170
+	169 -> 171
+	169 -> 172
+	169 -> 173
+	169 -> 174
+	169 -> 175
+	169 -> 185
+	169 -> 186
+	169 -> 187
+	192[label= "move"]
+	193[label= "("]
+	194[label= "p"]
+	195[label= ")"]
+	196[label= ";"]
+	191[label= Move]
+	191 -> 192
+	191 -> 193
+	191 -> 194
+	191 -> 195
+	191 -> 196
+	190[label= funcion2]
+	190 -> 191
+	200[label= "if"]
+	203[label= "3"]
+	204[label= "<"]
+	205[label= "5"]
+	202[label= Menor1]
+	202 -> 203
+	202 -> 204
+	202 -> 205
+	206[label= nodo_nulo]
+	201[label= condicion4]
+	201 -> 202
+	201 -> 206
+	207[label= "{"]
+	212[label= "println"]
+	213[label= "("]
+	214[label= "hola"]
+	215[label= ")"]
+	216[label= ";"]
+	211[label= Println]
+	211 -> 212
+	211 -> 213
+	211 -> 214
+	211 -> 215
+	211 -> 216
+	217[label= nodo_nulo]
+	210[label= funcion_if4]
+	210 -> 211
+	210 -> 217
+	218[label= nodo_nulo]
+	209[label= expresion_if]
+	209 -> 210
+	209 -> 218
+	208[label= cuerpo_if2]
+	208 -> 209
+	219[label= "}"]
+	220[label= "else"]
+	221[label= "{"]
+	226[label= "println"]
+	227[label= "("]
+	228[label= "else"]
 	229[label= ")"]
 	230[label= ";"]
-	226[label= main]
-	226 -> 227
-	226 -> 228
-	226 -> 229
-	226 -> 230
-	225[label= expresion7]
+	225[label= Println]
 	225 -> 226
-	213[label= expresion3]
-	213 -> 214
-	213 -> 225
-	212[label= cuerpo2]
-	212 -> 213
-	205[label= Variable2]
-	205 -> 206
-	205 -> 212
-	204[label= cuerpo1]
-	204 -> 205
-	197[label= Variable2]
-	197 -> 198
-	197 -> 204
-	196[label= cuerpo1]
-	196 -> 197
-	195[label= code]
-	195 -> 196
-	194[label= Start]
-	194->195
-	236[label= "let"]
-	237[label= "x"]
-	238[label= "="]
-	239[label= "2"]
-	240[label= ";"]
-	235[label= VariableDef2_1]
+	225 -> 227
+	225 -> 228
+	225 -> 229
+	225 -> 230
+	231[label= nodo_nulo]
+	224[label= funcion_else4]
+	224 -> 225
+	224 -> 231
+	232[label= nodo_nulo]
+	223[label= expresion_else]
+	223 -> 224
+	223 -> 232
+	222[label= cuerpo_else]
+	222 -> 223
+	233[label= "}"]
+	199[label= If2]
+	199 -> 200
+	199 -> 201
+	199 -> 207
+	199 -> 208
+	199 -> 219
+	199 -> 220
+	199 -> 221
+	199 -> 222
+	199 -> 233
+	198[label= funcion4]
+	198 -> 199
+	237[label= "delay"]
+	238[label= "("]
+	239[label= "3"]
+	240[label= ","]
+	241[label= "seg"]
+	242[label= ")"]
+	243[label= ";"]
+	236[label= Delay]
+	236 -> 237
+	236 -> 238
+	236 -> 239
+	236 -> 240
+	236 -> 241
+	236 -> 242
+	236 -> 243
+	235[label= funcion3]
 	235 -> 236
-	235 -> 237
-	235 -> 238
-	235 -> 239
-	235 -> 240
-	244[label= "let"]
-	245[label= "y"]
-	246[label= "="]
-	247[label= "5"]
-	248[label= ";"]
-	243[label= VariableDef2_1]
-	243 -> 244
-	243 -> 245
-	243 -> 246
-	243 -> 247
-	243 -> 248
-	253[label= "opera"]
-	254[label= "("]
-	255[label= "+"]
-	256[label= ","]
-	257[label= "y"]
+	247[label= "move"]
+	248[label= "("]
+	249[label= "i"]
+	250[label= ")"]
+	251[label= ";"]
+	246[label= Move]
+	246 -> 247
+	246 -> 248
+	246 -> 249
+	246 -> 250
+	246 -> 251
+	245[label= funcion2]
+	245 -> 246
+	255[label= "opera"]
+	256[label= "("]
+	257[label= "+"]
 	258[label= ","]
-	259[label= "x"]
-	260[label= ")"]
-	261[label= ";"]
-	252[label= Opera]
-	252 -> 253
-	252 -> 254
-	252 -> 255
-	252 -> 256
-	252 -> 257
-	252 -> 258
-	252 -> 259
-	252 -> 260
-	252 -> 261
-	251[label= funcion1]
-	251 -> 252
-	264[label= "main"]
-	265[label= "("]
-	266[label= ")"]
-	267[label= ";"]
-	263[label= main]
-	263 -> 264
-	263 -> 265
-	263 -> 266
-	263 -> 267
-	262[label= expresion7]
-	262 -> 263
-	250[label= expresion3]
-	250 -> 251
-	250 -> 262
-	249[label= cuerpo2]
-	249 -> 250
-	242[label= Variable2]
-	242 -> 243
-	242 -> 249
-	241[label= cuerpo1]
-	241 -> 242
-	234[label= Variable2]
-	234 -> 235
-	234 -> 241
-	233[label= cuerpo1]
-	233 -> 234
-	232[label= code]
-	232 -> 233
-	231[label= Start]
-	231->232
-	273[label= "let"]
-	274[label= "x"]
-	275[label= "="]
-	276[label= "2"]
-	277[label= ";"]
-	272[label= VariableDef2_1]
-	272 -> 273
-	272 -> 274
-	272 -> 275
-	272 -> 276
-	272 -> 277
-	281[label= "let"]
-	282[label= "y"]
-	283[label= "="]
-	284[label= "5"]
-	285[label= ";"]
-	280[label= VariableDef2_1]
-	280 -> 281
-	280 -> 282
-	280 -> 283
-	280 -> 284
-	280 -> 285
-	290[label= "opera"]
-	291[label= "("]
-	292[label= "-"]
-	293[label= ","]
-	294[label= "y"]
-	295[label= ","]
-	296[label= "x"]
-	297[label= ")"]
-	298[label= ";"]
-	289[label= Opera]
-	289 -> 290
-	289 -> 291
-	289 -> 292
-	289 -> 293
-	289 -> 294
-	289 -> 295
-	289 -> 296
-	289 -> 297
-	289 -> 298
-	288[label= funcion1]
-	288 -> 289
-	301[label= "main"]
-	302[label= "("]
-	303[label= ")"]
-	304[label= ";"]
-	300[label= main]
-	300 -> 301
-	300 -> 302
-	300 -> 303
-	300 -> 304
-	299[label= expresion7]
-	299 -> 300
-	287[label= expresion3]
-	287 -> 288
-	287 -> 299
-	286[label= cuerpo2]
-	286 -> 287
-	279[label= Variable2]
-	279 -> 280
-	279 -> 286
-	278[label= cuerpo1]
-	278 -> 279
-	271[label= Variable2]
-	271 -> 272
-	271 -> 278
-	270[label= cuerpo1]
-	270 -> 271
-	269[label= code]
-	269 -> 270
-	268[label= Start]
-	268->269
-	310[label= "let"]
-	311[label= "x"]
-	312[label= "="]
-	313[label= "2"]
-	314[label= ";"]
-	309[label= VariableDef2_1]
+	259[label= "5"]
+	260[label= ","]
+	261[label= "4"]
+	262[label= ")"]
+	263[label= ";"]
+	254[label= Opera]
+	254 -> 255
+	254 -> 256
+	254 -> 257
+	254 -> 258
+	254 -> 259
+	254 -> 260
+	254 -> 261
+	254 -> 262
+	254 -> 263
+	253[label= funcion1]
+	253 -> 254
+	267[label= "move"]
+	268[label= "("]
+	269[label= "p"]
+	270[label= ")"]
+	271[label= ";"]
+	266[label= Move]
+	266 -> 267
+	266 -> 268
+	266 -> 269
+	266 -> 270
+	266 -> 271
+	265[label= funcion2]
+	265 -> 266
+	275[label= "println"]
+	276[label= "("]
+	277[label= "hola"]
+	278[label= ")"]
+	279[label= ";"]
+	274[label= Println]
+	274 -> 275
+	274 -> 276
+	274 -> 277
+	274 -> 278
+	274 -> 279
+	273[label= funcion8]
+	273 -> 274
+	283[label= "if"]
+	286[label= "3"]
+	287[label= "=="]
+	288[label= "4"]
+	285[label= Igual1]
+	285 -> 286
+	285 -> 287
+	285 -> 288
+	289[label= nodo_nulo]
+	284[label= condicion1]
+	284 -> 285
+	284 -> 289
+	290[label= "{"]
+	295[label= "move"]
+	296[label= "("]
+	297[label= "c"]
+	298[label= ")"]
+	299[label= ";"]
+	294[label= Move]
+	294 -> 295
+	294 -> 296
+	294 -> 297
+	294 -> 298
+	294 -> 299
+	303[label= "move"]
+	304[label= "("]
+	305[label= "m"]
+	306[label= ")"]
+	307[label= ";"]
+	302[label= Move]
+	302 -> 303
+	302 -> 304
+	302 -> 305
+	302 -> 306
+	302 -> 307
+	311[label= "opera"]
+	312[label= "("]
+	313[label= "-"]
+	314[label= ","]
+	315[label= "2"]
+	316[label= ","]
+	317[label= "6"]
+	318[label= ")"]
+	319[label= ";"]
+	310[label= Opera]
+	310 -> 311
+	310 -> 312
+	310 -> 313
+	310 -> 314
+	310 -> 315
+	310 -> 316
+	310 -> 317
+	310 -> 318
+	310 -> 319
+	320[label= nodo_nulo]
+	309[label= funcion_if3]
 	309 -> 310
-	309 -> 311
-	309 -> 312
-	309 -> 313
-	309 -> 314
-	318[label= "let"]
-	319[label= "y"]
-	320[label= "="]
-	321[label= "5"]
-	322[label= ";"]
-	317[label= VariableDef2_1]
-	317 -> 318
-	317 -> 319
-	317 -> 320
-	317 -> 321
-	317 -> 322
-	327[label= "opera"]
+	309 -> 320
+	321[label= nodo_nulo]
+	308[label= expresion_if]
+	308 -> 309
+	308 -> 321
+	301[label= funcion_if1]
+	301 -> 302
+	301 -> 308
+	322[label= nodo_nulo]
+	300[label= expresion_if]
+	300 -> 301
+	300 -> 322
+	293[label= funcion_if1]
+	293 -> 294
+	293 -> 300
+	323[label= nodo_nulo]
+	292[label= expresion_if]
+	292 -> 293
+	292 -> 323
+	291[label= cuerpo_if2]
+	291 -> 292
+	324[label= "}"]
+	282[label= If1]
+	282 -> 283
+	282 -> 284
+	282 -> 290
+	282 -> 291
+	282 -> 324
+	281[label= funcion4]
+	281 -> 282
+	327[label= "main"]
 	328[label= "("]
-	329[label= "*"]
-	330[label= ","]
-	331[label= "y"]
-	332[label= ","]
-	333[label= "x"]
-	334[label= ")"]
-	335[label= ";"]
-	326[label= Opera]
+	329[label= ")"]
+	330[label= ";"]
+	326[label= main]
 	326 -> 327
 	326 -> 328
 	326 -> 329
 	326 -> 330
-	326 -> 331
-	326 -> 332
-	326 -> 333
-	326 -> 334
-	326 -> 335
-	325[label= funcion1]
+	325[label= expresion7]
 	325 -> 326
-	338[label= "main"]
-	339[label= "("]
-	340[label= ")"]
-	341[label= ";"]
-	337[label= main]
-	337 -> 338
-	337 -> 339
-	337 -> 340
-	337 -> 341
-	336[label= expresion7]
-	336 -> 337
-	324[label= expresion3]
-	324 -> 325
-	324 -> 336
-	323[label= cuerpo2]
-	323 -> 324
-	316[label= Variable2]
-	316 -> 317
-	316 -> 323
-	315[label= cuerpo1]
-	315 -> 316
-	308[label= Variable2]
-	308 -> 309
-	308 -> 315
-	307[label= cuerpo1]
-	307 -> 308
-	306[label= code]
-	306 -> 307
-	305[label= Start]
-	305->306
+	280[label= expresion3]
+	280 -> 281
+	280 -> 325
+	272[label= expresion3]
+	272 -> 273
+	272 -> 280
+	264[label= expresion3]
+	264 -> 265
+	264 -> 272
+	252[label= expresion3]
+	252 -> 253
+	252 -> 264
+	244[label= expresion3]
+	244 -> 245
+	244 -> 252
+	234[label= expresion3]
+	234 -> 235
+	234 -> 244
+	197[label= expresion3]
+	197 -> 198
+	197 -> 234
+	189[label= expresion3]
+	189 -> 190
+	189 -> 197
+	188[label= cuerpo2]
+	188 -> 189
+	168[label= cuerpo3]
+	168 -> 169
+	168 -> 188
+	167[label= code]
+	167 -> 168
+	166[label= Start]
+	166->167
+	335[label= fn]
+	336[label= "sumar"]
+	337[label= "("]
+	338[label= ")"]
+	339[label= "{"]
+	344[label= "println"]
+	345[label= "("]
+	346[label= "cruck"]
+	347[label= ")"]
+	348[label= ";"]
+	343[label= Println]
+	343 -> 344
+	343 -> 345
+	343 -> 346
+	343 -> 347
+	343 -> 348
+	342[label= funcion8]
+	342 -> 343
+	349[label= nodo_nulo]
+	341[label= expresion3]
+	341 -> 342
+	341 -> 349
+	340[label= cuerpo2]
+	340 -> 341
+	350[label= "}"]
+	351[label= ";"]
+	352[label= nodo_nulo]
+	334[label= fn]
+	334 -> 335
+	334 -> 336
+	334 -> 337
+	334 -> 338
+	334 -> 339
+	334 -> 340
+	334 -> 350
+	334 -> 351
+	334 -> 352
+	357[label= "move"]
+	358[label= "("]
+	359[label= "p"]
+	360[label= ")"]
+	361[label= ";"]
+	356[label= Move]
+	356 -> 357
+	356 -> 358
+	356 -> 359
+	356 -> 360
+	356 -> 361
+	355[label= funcion2]
+	355 -> 356
+	365[label= "if"]
+	368[label= "3"]
+	369[label= "<"]
+	370[label= "5"]
+	367[label= Menor1]
+	367 -> 368
+	367 -> 369
+	367 -> 370
+	371[label= nodo_nulo]
+	366[label= condicion4]
+	366 -> 367
+	366 -> 371
+	372[label= "{"]
+	377[label= "println"]
+	378[label= "("]
+	379[label= "hola"]
+	380[label= ")"]
+	381[label= ";"]
+	376[label= Println]
+	376 -> 377
+	376 -> 378
+	376 -> 379
+	376 -> 380
+	376 -> 381
+	382[label= nodo_nulo]
+	375[label= funcion_if4]
+	375 -> 376
+	375 -> 382
+	383[label= nodo_nulo]
+	374[label= expresion_if]
+	374 -> 375
+	374 -> 383
+	373[label= cuerpo_if2]
+	373 -> 374
+	384[label= "}"]
+	385[label= "else"]
+	386[label= "{"]
+	391[label= "println"]
+	392[label= "("]
+	393[label= "else"]
+	394[label= ")"]
+	395[label= ";"]
+	390[label= Println]
+	390 -> 391
+	390 -> 392
+	390 -> 393
+	390 -> 394
+	390 -> 395
+	396[label= nodo_nulo]
+	389[label= funcion_else4]
+	389 -> 390
+	389 -> 396
+	397[label= nodo_nulo]
+	388[label= expresion_else]
+	388 -> 389
+	388 -> 397
+	387[label= cuerpo_else]
+	387 -> 388
+	398[label= "}"]
+	364[label= If2]
+	364 -> 365
+	364 -> 366
+	364 -> 372
+	364 -> 373
+	364 -> 384
+	364 -> 385
+	364 -> 386
+	364 -> 387
+	364 -> 398
+	363[label= funcion4]
+	363 -> 364
+	402[label= "delay"]
+	403[label= "("]
+	404[label= "3"]
+	405[label= ","]
+	406[label= "seg"]
+	407[label= ")"]
+	408[label= ";"]
+	401[label= Delay]
+	401 -> 402
+	401 -> 403
+	401 -> 404
+	401 -> 405
+	401 -> 406
+	401 -> 407
+	401 -> 408
+	400[label= funcion3]
+	400 -> 401
+	412[label= "move"]
+	413[label= "("]
+	414[label= "i"]
+	415[label= ")"]
+	416[label= ";"]
+	411[label= Move]
+	411 -> 412
+	411 -> 413
+	411 -> 414
+	411 -> 415
+	411 -> 416
+	410[label= funcion2]
+	410 -> 411
+	420[label= "opera"]
+	421[label= "("]
+	422[label= "+"]
+	423[label= ","]
+	424[label= "5"]
+	425[label= ","]
+	426[label= "4"]
+	427[label= ")"]
+	428[label= ";"]
+	419[label= Opera]
+	419 -> 420
+	419 -> 421
+	419 -> 422
+	419 -> 423
+	419 -> 424
+	419 -> 425
+	419 -> 426
+	419 -> 427
+	419 -> 428
+	418[label= funcion1]
+	418 -> 419
+	432[label= "move"]
+	433[label= "("]
+	434[label= "p"]
+	435[label= ")"]
+	436[label= ";"]
+	431[label= Move]
+	431 -> 432
+	431 -> 433
+	431 -> 434
+	431 -> 435
+	431 -> 436
+	430[label= funcion2]
+	430 -> 431
+	440[label= "println"]
+	441[label= "("]
+	442[label= "hola"]
+	443[label= ")"]
+	444[label= ";"]
+	439[label= Println]
+	439 -> 440
+	439 -> 441
+	439 -> 442
+	439 -> 443
+	439 -> 444
+	438[label= funcion8]
+	438 -> 439
+	448[label= "if"]
+	451[label= "4"]
+	452[label= "=="]
+	453[label= "4"]
+	450[label= Igual1]
+	450 -> 451
+	450 -> 452
+	450 -> 453
+	454[label= nodo_nulo]
+	449[label= condicion1]
+	449 -> 450
+	449 -> 454
+	455[label= "{"]
+	460[label= "move"]
+	461[label= "("]
+	462[label= "c"]
+	463[label= ")"]
+	464[label= ";"]
+	459[label= Move]
+	459 -> 460
+	459 -> 461
+	459 -> 462
+	459 -> 463
+	459 -> 464
+	468[label= "move"]
+	469[label= "("]
+	470[label= "m"]
+	471[label= ")"]
+	472[label= ";"]
+	467[label= Move]
+	467 -> 468
+	467 -> 469
+	467 -> 470
+	467 -> 471
+	467 -> 472
+	476[label= "opera"]
+	477[label= "("]
+	478[label= "-"]
+	479[label= ","]
+	480[label= "2"]
+	481[label= ","]
+	482[label= "6"]
+	483[label= ")"]
+	484[label= ";"]
+	475[label= Opera]
+	475 -> 476
+	475 -> 477
+	475 -> 478
+	475 -> 479
+	475 -> 480
+	475 -> 481
+	475 -> 482
+	475 -> 483
+	475 -> 484
+	485[label= nodo_nulo]
+	474[label= funcion_if3]
+	474 -> 475
+	474 -> 485
+	486[label= nodo_nulo]
+	473[label= expresion_if]
+	473 -> 474
+	473 -> 486
+	466[label= funcion_if1]
+	466 -> 467
+	466 -> 473
+	487[label= nodo_nulo]
+	465[label= expresion_if]
+	465 -> 466
+	465 -> 487
+	458[label= funcion_if1]
+	458 -> 459
+	458 -> 465
+	488[label= nodo_nulo]
+	457[label= expresion_if]
+	457 -> 458
+	457 -> 488
+	456[label= cuerpo_if2]
+	456 -> 457
+	489[label= "}"]
+	447[label= If1]
+	447 -> 448
+	447 -> 449
+	447 -> 455
+	447 -> 456
+	447 -> 489
+	446[label= funcion4]
+	446 -> 447
+	492[label= "main"]
+	493[label= "("]
+	494[label= ")"]
+	495[label= ";"]
+	491[label= main]
+	491 -> 492
+	491 -> 493
+	491 -> 494
+	491 -> 495
+	490[label= expresion7]
+	490 -> 491
+	445[label= expresion3]
+	445 -> 446
+	445 -> 490
+	437[label= expresion3]
+	437 -> 438
+	437 -> 445
+	429[label= expresion3]
+	429 -> 430
+	429 -> 437
+	417[label= expresion3]
+	417 -> 418
+	417 -> 429
+	409[label= expresion3]
+	409 -> 410
+	409 -> 417
+	399[label= expresion3]
+	399 -> 400
+	399 -> 409
+	362[label= expresion3]
+	362 -> 363
+	362 -> 399
+	354[label= expresion3]
+	354 -> 355
+	354 -> 362
+	353[label= cuerpo2]
+	353 -> 354
+	333[label= cuerpo3]
+	333 -> 334
+	333 -> 353
+	332[label= code]
+	332 -> 333
+	331[label= Start]
+	331->332
+	500[label= fn]
+	501[label= "sumar"]
+	502[label= "("]
+	503[label= ")"]
+	504[label= "{"]
+	509[label= "println"]
+	510[label= "("]
+	511[label= "cruck"]
+	512[label= ")"]
+	513[label= ";"]
+	508[label= Println]
+	508 -> 509
+	508 -> 510
+	508 -> 511
+	508 -> 512
+	508 -> 513
+	507[label= funcion8]
+	507 -> 508
+	514[label= nodo_nulo]
+	506[label= expresion3]
+	506 -> 507
+	506 -> 514
+	505[label= cuerpo2]
+	505 -> 506
+	515[label= "}"]
+	516[label= ";"]
+	517[label= nodo_nulo]
+	499[label= fn]
+	499 -> 500
+	499 -> 501
+	499 -> 502
+	499 -> 503
+	499 -> 504
+	499 -> 505
+	499 -> 515
+	499 -> 516
+	499 -> 517
+	522[label= "move"]
+	523[label= "("]
+	524[label= "p"]
+	525[label= ")"]
+	526[label= ";"]
+	521[label= Move]
+	521 -> 522
+	521 -> 523
+	521 -> 524
+	521 -> 525
+	521 -> 526
+	520[label= funcion2]
+	520 -> 521
+	530[label= "if"]
+	533[label= "3"]
+	534[label= "<"]
+	535[label= "5"]
+	532[label= Menor1]
+	532 -> 533
+	532 -> 534
+	532 -> 535
+	536[label= nodo_nulo]
+	531[label= condicion4]
+	531 -> 532
+	531 -> 536
+	537[label= "{"]
+	542[label= "println"]
+	543[label= "("]
+	544[label= "hola"]
+	545[label= ")"]
+	546[label= ";"]
+	541[label= Println]
+	541 -> 542
+	541 -> 543
+	541 -> 544
+	541 -> 545
+	541 -> 546
+	547[label= nodo_nulo]
+	540[label= funcion_if4]
+	540 -> 541
+	540 -> 547
+	548[label= nodo_nulo]
+	539[label= expresion_if]
+	539 -> 540
+	539 -> 548
+	538[label= cuerpo_if2]
+	538 -> 539
+	549[label= "}"]
+	550[label= "else"]
+	551[label= "{"]
+	556[label= "println"]
+	557[label= "("]
+	558[label= "else"]
+	559[label= ")"]
+	560[label= ";"]
+	555[label= Println]
+	555 -> 556
+	555 -> 557
+	555 -> 558
+	555 -> 559
+	555 -> 560
+	561[label= nodo_nulo]
+	554[label= funcion_else4]
+	554 -> 555
+	554 -> 561
+	562[label= nodo_nulo]
+	553[label= expresion_else]
+	553 -> 554
+	553 -> 562
+	552[label= cuerpo_else]
+	552 -> 553
+	563[label= "}"]
+	529[label= If2]
+	529 -> 530
+	529 -> 531
+	529 -> 537
+	529 -> 538
+	529 -> 549
+	529 -> 550
+	529 -> 551
+	529 -> 552
+	529 -> 563
+	528[label= funcion4]
+	528 -> 529
+	567[label= "delay"]
+	568[label= "("]
+	569[label= "3"]
+	570[label= ","]
+	571[label= "seg"]
+	572[label= ")"]
+	573[label= ";"]
+	566[label= Delay]
+	566 -> 567
+	566 -> 568
+	566 -> 569
+	566 -> 570
+	566 -> 571
+	566 -> 572
+	566 -> 573
+	565[label= funcion3]
+	565 -> 566
+	577[label= "move"]
+	578[label= "("]
+	579[label= "i"]
+	580[label= ")"]
+	581[label= ";"]
+	576[label= Move]
+	576 -> 577
+	576 -> 578
+	576 -> 579
+	576 -> 580
+	576 -> 581
+	575[label= funcion2]
+	575 -> 576
+	585[label= "opera"]
+	586[label= "("]
+	587[label= "+"]
+	588[label= ","]
+	589[label= "5"]
+	590[label= ","]
+	591[label= "4"]
+	592[label= ")"]
+	593[label= ";"]
+	584[label= Opera]
+	584 -> 585
+	584 -> 586
+	584 -> 587
+	584 -> 588
+	584 -> 589
+	584 -> 590
+	584 -> 591
+	584 -> 592
+	584 -> 593
+	583[label= funcion1]
+	583 -> 584
+	597[label= "move"]
+	598[label= "("]
+	599[label= "p"]
+	600[label= ")"]
+	601[label= ";"]
+	596[label= Move]
+	596 -> 597
+	596 -> 598
+	596 -> 599
+	596 -> 600
+	596 -> 601
+	595[label= funcion2]
+	595 -> 596
+	605[label= "println"]
+	606[label= "("]
+	607[label= "hola"]
+	608[label= ")"]
+	609[label= ";"]
+	604[label= Println]
+	604 -> 605
+	604 -> 606
+	604 -> 607
+	604 -> 608
+	604 -> 609
+	603[label= funcion8]
+	603 -> 604
+	613[label= "if"]
+	616[label= "2"]
+	617[label= "=="]
+	618[label= "4"]
+	615[label= Igual1]
+	615 -> 616
+	615 -> 617
+	615 -> 618
+	619[label= nodo_nulo]
+	614[label= condicion1]
+	614 -> 615
+	614 -> 619
+	620[label= "{"]
+	625[label= "move"]
+	626[label= "("]
+	627[label= "c"]
+	628[label= ")"]
+	629[label= ";"]
+	624[label= Move]
+	624 -> 625
+	624 -> 626
+	624 -> 627
+	624 -> 628
+	624 -> 629
+	633[label= "move"]
+	634[label= "("]
+	635[label= "m"]
+	636[label= ")"]
+	637[label= ";"]
+	632[label= Move]
+	632 -> 633
+	632 -> 634
+	632 -> 635
+	632 -> 636
+	632 -> 637
+	641[label= "opera"]
+	642[label= "("]
+	643[label= "-"]
+	644[label= ","]
+	645[label= "2"]
+	646[label= ","]
+	647[label= "6"]
+	648[label= ")"]
+	649[label= ";"]
+	640[label= Opera]
+	640 -> 641
+	640 -> 642
+	640 -> 643
+	640 -> 644
+	640 -> 645
+	640 -> 646
+	640 -> 647
+	640 -> 648
+	640 -> 649
+	650[label= nodo_nulo]
+	639[label= funcion_if3]
+	639 -> 640
+	639 -> 650
+	651[label= nodo_nulo]
+	638[label= expresion_if]
+	638 -> 639
+	638 -> 651
+	631[label= funcion_if1]
+	631 -> 632
+	631 -> 638
+	652[label= nodo_nulo]
+	630[label= expresion_if]
+	630 -> 631
+	630 -> 652
+	623[label= funcion_if1]
+	623 -> 624
+	623 -> 630
+	653[label= nodo_nulo]
+	622[label= expresion_if]
+	622 -> 623
+	622 -> 653
+	621[label= cuerpo_if2]
+	621 -> 622
+	654[label= "}"]
+	612[label= If1]
+	612 -> 613
+	612 -> 614
+	612 -> 620
+	612 -> 621
+	612 -> 654
+	611[label= funcion4]
+	611 -> 612
+	657[label= "main"]
+	658[label= "("]
+	659[label= ")"]
+	660[label= ";"]
+	656[label= main]
+	656 -> 657
+	656 -> 658
+	656 -> 659
+	656 -> 660
+	655[label= expresion7]
+	655 -> 656
+	610[label= expresion3]
+	610 -> 611
+	610 -> 655
+	602[label= expresion3]
+	602 -> 603
+	602 -> 610
+	594[label= expresion3]
+	594 -> 595
+	594 -> 602
+	582[label= expresion3]
+	582 -> 583
+	582 -> 594
+	574[label= expresion3]
+	574 -> 575
+	574 -> 582
+	564[label= expresion3]
+	564 -> 565
+	564 -> 574
+	527[label= expresion3]
+	527 -> 528
+	527 -> 564
+	519[label= expresion3]
+	519 -> 520
+	519 -> 527
+	518[label= cuerpo2]
+	518 -> 519
+	498[label= cuerpo3]
+	498 -> 499
+	498 -> 518
+	497[label= code]
+	497 -> 498
+	496[label= Start]
+	496->497
+	665[label= fn]
+	666[label= "sumar"]
+	667[label= "("]
+	668[label= ")"]
+	669[label= "{"]
+	674[label= "println"]
+	675[label= "("]
+	676[label= "cruck"]
+	677[label= ")"]
+	678[label= ";"]
+	673[label= Println]
+	673 -> 674
+	673 -> 675
+	673 -> 676
+	673 -> 677
+	673 -> 678
+	672[label= funcion8]
+	672 -> 673
+	679[label= nodo_nulo]
+	671[label= expresion3]
+	671 -> 672
+	671 -> 679
+	670[label= cuerpo2]
+	670 -> 671
+	680[label= "}"]
+	681[label= ";"]
+	682[label= nodo_nulo]
+	664[label= fn]
+	664 -> 665
+	664 -> 666
+	664 -> 667
+	664 -> 668
+	664 -> 669
+	664 -> 670
+	664 -> 680
+	664 -> 681
+	664 -> 682
+	686[label= "let"]
+	687[label= "x"]
+	688[label= "="]
+	689[label= "10"]
+	690[label= ";"]
+	685[label= VariableDef2_1]
+	685 -> 686
+	685 -> 687
+	685 -> 688
+	685 -> 689
+	685 -> 690
+	694[label= "let"]
+	695[label= "y"]
+	696[label= "="]
+	697[label= "5"]
+	698[label= ";"]
+	693[label= VariableDef2_1]
+	693 -> 694
+	693 -> 695
+	693 -> 696
+	693 -> 697
+	693 -> 698
+	703[label= "println"]
+	704[label= "("]
+	705[label= "x"]
+	706[label= ")"]
+	707[label= ";"]
+	702[label= Println]
+	702 -> 703
+	702 -> 704
+	702 -> 705
+	702 -> 706
+	702 -> 707
+	701[label= funcion8]
+	701 -> 702
+	711[label= "move"]
+	712[label= "("]
+	713[label= "p"]
+	714[label= ")"]
+	715[label= ";"]
+	710[label= Move]
+	710 -> 711
+	710 -> 712
+	710 -> 713
+	710 -> 714
+	710 -> 715
+	709[label= funcion2]
+	709 -> 710
+	719[label= "if"]
+	722[label= "3"]
+	723[label= "<"]
+	724[label= "5"]
+	721[label= Menor1]
+	721 -> 722
+	721 -> 723
+	721 -> 724
+	725[label= nodo_nulo]
+	720[label= condicion4]
+	720 -> 721
+	720 -> 725
+	726[label= "{"]
+	731[label= "println"]
+	732[label= "("]
+	733[label= "hola"]
+	734[label= ")"]
+	735[label= ";"]
+	730[label= Println]
+	730 -> 731
+	730 -> 732
+	730 -> 733
+	730 -> 734
+	730 -> 735
+	736[label= nodo_nulo]
+	729[label= funcion_if4]
+	729 -> 730
+	729 -> 736
+	737[label= nodo_nulo]
+	728[label= expresion_if]
+	728 -> 729
+	728 -> 737
+	727[label= cuerpo_if2]
+	727 -> 728
+	738[label= "}"]
+	739[label= "else"]
+	740[label= "{"]
+	745[label= "println"]
+	746[label= "("]
+	747[label= "else"]
+	748[label= ")"]
+	749[label= ";"]
+	744[label= Println]
+	744 -> 745
+	744 -> 746
+	744 -> 747
+	744 -> 748
+	744 -> 749
+	750[label= nodo_nulo]
+	743[label= funcion_else4]
+	743 -> 744
+	743 -> 750
+	751[label= nodo_nulo]
+	742[label= expresion_else]
+	742 -> 743
+	742 -> 751
+	741[label= cuerpo_else]
+	741 -> 742
+	752[label= "}"]
+	718[label= If2]
+	718 -> 719
+	718 -> 720
+	718 -> 726
+	718 -> 727
+	718 -> 738
+	718 -> 739
+	718 -> 740
+	718 -> 741
+	718 -> 752
+	717[label= funcion4]
+	717 -> 718
+	756[label= "delay"]
+	757[label= "("]
+	758[label= "3"]
+	759[label= ","]
+	760[label= "seg"]
+	761[label= ")"]
+	762[label= ";"]
+	755[label= Delay]
+	755 -> 756
+	755 -> 757
+	755 -> 758
+	755 -> 759
+	755 -> 760
+	755 -> 761
+	755 -> 762
+	754[label= funcion3]
+	754 -> 755
+	766[label= "move"]
+	767[label= "("]
+	768[label= "i"]
+	769[label= ")"]
+	770[label= ";"]
+	765[label= Move]
+	765 -> 766
+	765 -> 767
+	765 -> 768
+	765 -> 769
+	765 -> 770
+	764[label= funcion2]
+	764 -> 765
+	774[label= "opera"]
+	775[label= "("]
+	776[label= "+"]
+	777[label= ","]
+	778[label= "5"]
+	779[label= ","]
+	780[label= "4"]
+	781[label= ")"]
+	782[label= ";"]
+	773[label= Opera]
+	773 -> 774
+	773 -> 775
+	773 -> 776
+	773 -> 777
+	773 -> 778
+	773 -> 779
+	773 -> 780
+	773 -> 781
+	773 -> 782
+	772[label= funcion1]
+	772 -> 773
+	786[label= "move"]
+	787[label= "("]
+	788[label= "p"]
+	789[label= ")"]
+	790[label= ";"]
+	785[label= Move]
+	785 -> 786
+	785 -> 787
+	785 -> 788
+	785 -> 789
+	785 -> 790
+	784[label= funcion2]
+	784 -> 785
+	794[label= "println"]
+	795[label= "("]
+	796[label= "hola"]
+	797[label= ")"]
+	798[label= ";"]
+	793[label= Println]
+	793 -> 794
+	793 -> 795
+	793 -> 796
+	793 -> 797
+	793 -> 798
+	792[label= funcion8]
+	792 -> 793
+	802[label= "if"]
+	805[label= "2"]
+	806[label= "=="]
+	807[label= "4"]
+	804[label= Igual1]
+	804 -> 805
+	804 -> 806
+	804 -> 807
+	808[label= nodo_nulo]
+	803[label= condicion1]
+	803 -> 804
+	803 -> 808
+	809[label= "{"]
+	814[label= "move"]
+	815[label= "("]
+	816[label= "c"]
+	817[label= ")"]
+	818[label= ";"]
+	813[label= Move]
+	813 -> 814
+	813 -> 815
+	813 -> 816
+	813 -> 817
+	813 -> 818
+	822[label= "move"]
+	823[label= "("]
+	824[label= "m"]
+	825[label= ")"]
+	826[label= ";"]
+	821[label= Move]
+	821 -> 822
+	821 -> 823
+	821 -> 824
+	821 -> 825
+	821 -> 826
+	830[label= "opera"]
+	831[label= "("]
+	832[label= "-"]
+	833[label= ","]
+	834[label= "2"]
+	835[label= ","]
+	836[label= "6"]
+	837[label= ")"]
+	838[label= ";"]
+	829[label= Opera]
+	829 -> 830
+	829 -> 831
+	829 -> 832
+	829 -> 833
+	829 -> 834
+	829 -> 835
+	829 -> 836
+	829 -> 837
+	829 -> 838
+	839[label= nodo_nulo]
+	828[label= funcion_if3]
+	828 -> 829
+	828 -> 839
+	840[label= nodo_nulo]
+	827[label= expresion_if]
+	827 -> 828
+	827 -> 840
+	820[label= funcion_if1]
+	820 -> 821
+	820 -> 827
+	841[label= nodo_nulo]
+	819[label= expresion_if]
+	819 -> 820
+	819 -> 841
+	812[label= funcion_if1]
+	812 -> 813
+	812 -> 819
+	842[label= nodo_nulo]
+	811[label= expresion_if]
+	811 -> 812
+	811 -> 842
+	810[label= cuerpo_if2]
+	810 -> 811
+	843[label= "}"]
+	801[label= If1]
+	801 -> 802
+	801 -> 803
+	801 -> 809
+	801 -> 810
+	801 -> 843
+	800[label= funcion4]
+	800 -> 801
+	846[label= "main"]
+	847[label= "("]
+	848[label= ")"]
+	849[label= ";"]
+	845[label= main]
+	845 -> 846
+	845 -> 847
+	845 -> 848
+	845 -> 849
+	844[label= expresion7]
+	844 -> 845
+	799[label= expresion3]
+	799 -> 800
+	799 -> 844
+	791[label= expresion3]
+	791 -> 792
+	791 -> 799
+	783[label= expresion3]
+	783 -> 784
+	783 -> 791
+	771[label= expresion3]
+	771 -> 772
+	771 -> 783
+	763[label= expresion3]
+	763 -> 764
+	763 -> 771
+	753[label= expresion3]
+	753 -> 754
+	753 -> 763
+	716[label= expresion3]
+	716 -> 717
+	716 -> 753
+	708[label= expresion3]
+	708 -> 709
+	708 -> 716
+	700[label= expresion3]
+	700 -> 701
+	700 -> 708
+	699[label= cuerpo2]
+	699 -> 700
+	692[label= Variable2]
+	692 -> 693
+	692 -> 699
+	691[label= cuerpo1]
+	691 -> 692
+	684[label= Variable2]
+	684 -> 685
+	684 -> 691
+	683[label= cuerpo1]
+	683 -> 684
+	663[label= cuerpo3]
+	663 -> 664
+	663 -> 683
+	662[label= code]
+	662 -> 663
+	661[label= Start]
+	661->662
+	854[label= fn]
+	855[label= "sumar"]
+	856[label= "("]
+	857[label= ")"]
+	858[label= "{"]
+	863[label= "println"]
+	864[label= "("]
+	865[label= "cruck"]
+	866[label= ")"]
+	867[label= ";"]
+	862[label= Println]
+	862 -> 863
+	862 -> 864
+	862 -> 865
+	862 -> 866
+	862 -> 867
+	861[label= funcion8]
+	861 -> 862
+	868[label= nodo_nulo]
+	860[label= expresion3]
+	860 -> 861
+	860 -> 868
+	859[label= cuerpo2]
+	859 -> 860
+	869[label= "}"]
+	870[label= ";"]
+	871[label= nodo_nulo]
+	853[label= fn]
+	853 -> 854
+	853 -> 855
+	853 -> 856
+	853 -> 857
+	853 -> 858
+	853 -> 859
+	853 -> 869
+	853 -> 870
+	853 -> 871
+	875[label= "let"]
+	876[label= "x"]
+	877[label= "="]
+	878[label= "10"]
+	879[label= ";"]
+	874[label= VariableDef2_1]
+	874 -> 875
+	874 -> 876
+	874 -> 877
+	874 -> 878
+	874 -> 879
+	883[label= "let"]
+	884[label= "y"]
+	885[label= "="]
+	886[label= "5"]
+	887[label= ";"]
+	882[label= VariableDef2_1]
+	882 -> 883
+	882 -> 884
+	882 -> 885
+	882 -> 886
+	882 -> 887
+	892[label= "println"]
+	893[label= "("]
+	894[label= "x"]
+	895[label= ")"]
+	896[label= ";"]
+	891[label= Println]
+	891 -> 892
+	891 -> 893
+	891 -> 894
+	891 -> 895
+	891 -> 896
+	890[label= funcion8]
+	890 -> 891
+	900[label= "opera"]
+	901[label= "("]
+	902[label= "+"]
+	903[label= ","]
+	904[label= "x"]
+	905[label= ","]
+	906[label= "y"]
+	907[label= ")"]
+	908[label= ";"]
+	899[label= Opera]
+	899 -> 900
+	899 -> 901
+	899 -> 902
+	899 -> 903
+	899 -> 904
+	899 -> 905
+	899 -> 906
+	899 -> 907
+	899 -> 908
+	898[label= funcion1]
+	898 -> 899
+	912[label= "move"]
+	913[label= "("]
+	914[label= "p"]
+	915[label= ")"]
+	916[label= ";"]
+	911[label= Move]
+	911 -> 912
+	911 -> 913
+	911 -> 914
+	911 -> 915
+	911 -> 916
+	910[label= funcion2]
+	910 -> 911
+	920[label= "if"]
+	923[label= "3"]
+	924[label= "<"]
+	925[label= "5"]
+	922[label= Menor1]
+	922 -> 923
+	922 -> 924
+	922 -> 925
+	926[label= nodo_nulo]
+	921[label= condicion4]
+	921 -> 922
+	921 -> 926
+	927[label= "{"]
+	932[label= "println"]
+	933[label= "("]
+	934[label= "hola"]
+	935[label= ")"]
+	936[label= ";"]
+	931[label= Println]
+	931 -> 932
+	931 -> 933
+	931 -> 934
+	931 -> 935
+	931 -> 936
+	937[label= nodo_nulo]
+	930[label= funcion_if4]
+	930 -> 931
+	930 -> 937
+	938[label= nodo_nulo]
+	929[label= expresion_if]
+	929 -> 930
+	929 -> 938
+	928[label= cuerpo_if2]
+	928 -> 929
+	939[label= "}"]
+	940[label= "else"]
+	941[label= "{"]
+	946[label= "println"]
+	947[label= "("]
+	948[label= "else"]
+	949[label= ")"]
+	950[label= ";"]
+	945[label= Println]
+	945 -> 946
+	945 -> 947
+	945 -> 948
+	945 -> 949
+	945 -> 950
+	951[label= nodo_nulo]
+	944[label= funcion_else4]
+	944 -> 945
+	944 -> 951
+	952[label= nodo_nulo]
+	943[label= expresion_else]
+	943 -> 944
+	943 -> 952
+	942[label= cuerpo_else]
+	942 -> 943
+	953[label= "}"]
+	919[label= If2]
+	919 -> 920
+	919 -> 921
+	919 -> 927
+	919 -> 928
+	919 -> 939
+	919 -> 940
+	919 -> 941
+	919 -> 942
+	919 -> 953
+	918[label= funcion4]
+	918 -> 919
+	957[label= "delay"]
+	958[label= "("]
+	959[label= "3"]
+	960[label= ","]
+	961[label= "seg"]
+	962[label= ")"]
+	963[label= ";"]
+	956[label= Delay]
+	956 -> 957
+	956 -> 958
+	956 -> 959
+	956 -> 960
+	956 -> 961
+	956 -> 962
+	956 -> 963
+	955[label= funcion3]
+	955 -> 956
+	967[label= "move"]
+	968[label= "("]
+	969[label= "i"]
+	970[label= ")"]
+	971[label= ";"]
+	966[label= Move]
+	966 -> 967
+	966 -> 968
+	966 -> 969
+	966 -> 970
+	966 -> 971
+	965[label= funcion2]
+	965 -> 966
+	975[label= "opera"]
+	976[label= "("]
+	977[label= "+"]
+	978[label= ","]
+	979[label= "5"]
+	980[label= ","]
+	981[label= "4"]
+	982[label= ")"]
+	983[label= ";"]
+	974[label= Opera]
+	974 -> 975
+	974 -> 976
+	974 -> 977
+	974 -> 978
+	974 -> 979
+	974 -> 980
+	974 -> 981
+	974 -> 982
+	974 -> 983
+	973[label= funcion1]
+	973 -> 974
+	987[label= "move"]
+	988[label= "("]
+	989[label= "p"]
+	990[label= ")"]
+	991[label= ";"]
+	986[label= Move]
+	986 -> 987
+	986 -> 988
+	986 -> 989
+	986 -> 990
+	986 -> 991
+	985[label= funcion2]
+	985 -> 986
+	995[label= "println"]
+	996[label= "("]
+	997[label= "hola"]
+	998[label= ")"]
+	999[label= ";"]
+	994[label= Println]
+	994 -> 995
+	994 -> 996
+	994 -> 997
+	994 -> 998
+	994 -> 999
+	993[label= funcion8]
+	993 -> 994
+	1003[label= "if"]
+	1006[label= "2"]
+	1007[label= "=="]
+	1008[label= "4"]
+	1005[label= Igual1]
+	1005 -> 1006
+	1005 -> 1007
+	1005 -> 1008
+	1009[label= nodo_nulo]
+	1004[label= condicion1]
+	1004 -> 1005
+	1004 -> 1009
+	1010[label= "{"]
+	1015[label= "move"]
+	1016[label= "("]
+	1017[label= "c"]
+	1018[label= ")"]
+	1019[label= ";"]
+	1014[label= Move]
+	1014 -> 1015
+	1014 -> 1016
+	1014 -> 1017
+	1014 -> 1018
+	1014 -> 1019
+	1023[label= "move"]
+	1024[label= "("]
+	1025[label= "m"]
+	1026[label= ")"]
+	1027[label= ";"]
+	1022[label= Move]
+	1022 -> 1023
+	1022 -> 1024
+	1022 -> 1025
+	1022 -> 1026
+	1022 -> 1027
+	1031[label= "opera"]
+	1032[label= "("]
+	1033[label= "-"]
+	1034[label= ","]
+	1035[label= "2"]
+	1036[label= ","]
+	1037[label= "6"]
+	1038[label= ")"]
+	1039[label= ";"]
+	1030[label= Opera]
+	1030 -> 1031
+	1030 -> 1032
+	1030 -> 1033
+	1030 -> 1034
+	1030 -> 1035
+	1030 -> 1036
+	1030 -> 1037
+	1030 -> 1038
+	1030 -> 1039
+	1040[label= nodo_nulo]
+	1029[label= funcion_if3]
+	1029 -> 1030
+	1029 -> 1040
+	1041[label= nodo_nulo]
+	1028[label= expresion_if]
+	1028 -> 1029
+	1028 -> 1041
+	1021[label= funcion_if1]
+	1021 -> 1022
+	1021 -> 1028
+	1042[label= nodo_nulo]
+	1020[label= expresion_if]
+	1020 -> 1021
+	1020 -> 1042
+	1013[label= funcion_if1]
+	1013 -> 1014
+	1013 -> 1020
+	1043[label= nodo_nulo]
+	1012[label= expresion_if]
+	1012 -> 1013
+	1012 -> 1043
+	1011[label= cuerpo_if2]
+	1011 -> 1012
+	1044[label= "}"]
+	1002[label= If1]
+	1002 -> 1003
+	1002 -> 1004
+	1002 -> 1010
+	1002 -> 1011
+	1002 -> 1044
+	1001[label= funcion4]
+	1001 -> 1002
+	1047[label= "main"]
+	1048[label= "("]
+	1049[label= ")"]
+	1050[label= ";"]
+	1046[label= main]
+	1046 -> 1047
+	1046 -> 1048
+	1046 -> 1049
+	1046 -> 1050
+	1045[label= expresion7]
+	1045 -> 1046
+	1000[label= expresion3]
+	1000 -> 1001
+	1000 -> 1045
+	992[label= expresion3]
+	992 -> 993
+	992 -> 1000
+	984[label= expresion3]
+	984 -> 985
+	984 -> 992
+	972[label= expresion3]
+	972 -> 973
+	972 -> 984
+	964[label= expresion3]
+	964 -> 965
+	964 -> 972
+	954[label= expresion3]
+	954 -> 955
+	954 -> 964
+	917[label= expresion3]
+	917 -> 918
+	917 -> 954
+	909[label= expresion3]
+	909 -> 910
+	909 -> 917
+	897[label= expresion3]
+	897 -> 898
+	897 -> 909
+	889[label= expresion3]
+	889 -> 890
+	889 -> 897
+	888[label= cuerpo2]
+	888 -> 889
+	881[label= Variable2]
+	881 -> 882
+	881 -> 888
+	880[label= cuerpo1]
+	880 -> 881
+	873[label= Variable2]
+	873 -> 874
+	873 -> 880
+	872[label= cuerpo1]
+	872 -> 873
+	852[label= cuerpo3]
+	852 -> 853
+	852 -> 872
+	851[label= code]
+	851 -> 852
+	850[label= Start]
+	850->851
 	}

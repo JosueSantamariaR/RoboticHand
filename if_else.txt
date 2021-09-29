@@ -1,0 +1,18 @@
+Inicio
+
+
+
+if 3<5{
+	move(p);
+} else {
+	move(i);
+}
+
+
+main();
+
+
+Fin
+
+
+

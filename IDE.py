@@ -9,6 +9,8 @@ import time
 import graphviz
 
 
+lineas = 0
+
 class Gui:
 
     def __init__(self):
@@ -35,9 +37,8 @@ class Gui:
 
         # Buttons
         Button(self.MainWindow, text="ABRIR", background = "white", foreground = "black" ,command=self.OpenButtonClick).place(x=5, y=1)
-        Button(self.MainWindow, text="GUARDAR", background = "white", foreground = "black" ,command=self.SaveButtonClick).place(x=47.5, y=1)
-        Button(self.MainWindow, text="COMPILAR", background = "yellow", foreground = "black" , command=self.compileButtonClick).place(x=550, y=1)
-        Button(self.MainWindow, text="CORRER", background = "yellow", foreground = "black" , command=self.runButtonClick).place(x=620, y=1)
+        Button(self.MainWindow, text="GUARDAR", background = "white", foreground = "black" ,command=self.SaveButtonClick).place(x=52, y=1)
+        Button(self.MainWindow, text="COMPILAR", background = "yellow", foreground = "black" , command=self.compileButtonClick).place(x=585, y=1)
         Button(self.MainWindow, text="Mostrar Arbol", background = "yellow", foreground = "black" , command=self.showAst).place(x=675, y=1)
         Button(self.MainWindow, text="SALIR", background = "red", foreground = "black" ,command=lambda: self.MainWindow.destroy()).place(x=945, y=1)
 
@@ -100,8 +101,14 @@ class Gui:
 
         if cadena != "":
             lista = lexicalAnalizer(cadena)
-            
-            sintacticAnalizer(cadena)
+
+            #setlineas(lineas)
+            #sintacticAnalizer(cadena)
+            try:
+                setlineas(lineas)
+                sintacticAnalizer(cadena)
+            except:
+                pass
             #txtResult = showAst(cadena)
             #self.setAstInArea(txtResult)
             
@@ -124,12 +131,6 @@ class Gui:
             mb.showwarning("Error","Debes escribir código!!")
     
 
-    def runButtonClick(self):
-        cadena = self.CodeTextArea.get("1.0", END)
-        self.OutputTextArea.delete("1.0",END)
-
-
-        mb.showwarning("Error","Debes escribir código!!")
 
     def showAst(self):
         ROOT_DIR = os.path.abspath(os.curdir)
@@ -192,6 +193,8 @@ class TextLineNumbers(Canvas):
             dline= self.textwidget.dlineinfo(i)
             if dline is None: break
             y = dline[1]
+            global lineas
+            lineas = i
             linenum = str(i).split(".")[0]
             self.create_text(2, y, anchor="nw", text=linenum, fill="#fff", font=14)
             i = self.textwidget.index("%s+1line" % i)      

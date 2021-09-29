@@ -54,15 +54,22 @@ def p_cuerpo2(p):
 
 def p_cuerpo3(p):
 
-    '''cuerpo : cuerpo_if'''
+    '''cuerpo : fn cuerpo'''
 
-    p[0] = cuerpo3(p[1],"cuerpo3") 
+    p[0] = cuerpo3(p[1],p[2],"cuerpo3")
 
 def p_cuerpo4(p):
 
-    '''cuerpo : fn cuerpo'''
+    '''cuerpo : cuerpo_if'''
 
-    p[0] = cuerpo4(p[1],p[2],"cuerpo4")
+    p[0] = cuerpo4(p[1],"cuerpo4") 
+
+def p_cuerpo5(p):
+    
+    '''cuerpo : cuerpo_else'''
+
+    p[0] = cuerpo5(p[1],p[2],"cuerpo5")
+
 
 #---------------------------------------CUERPO_IF---------------------------------------
 
@@ -77,6 +84,13 @@ def p_cuerpo_if2(p):
 
     p[0] = cuerpo_if2(p[1], "cuerpo_if2")
 
+def p_cuerpo_else(p):
+
+    '''
+    cuerpo_else : expresion_else
+    '''
+
+    p[0] = cuerpo_else(p[1], "cuerpo_else")
 
 
 #---------------------------------------Prueba IF---------------------------------------
@@ -108,6 +122,37 @@ def p_funcion_if3(p):
 def p_funcion_if4(p):
     '''funcion_if : Println_if expresion_if'''
     p[0] = funcion_if4(p[1], p[2], "funcion_if4")
+
+
+#---------------------------------------Prueba ELSE---------------------------------------
+
+def p_expresion_else1(p):
+    '''expresion_else : ELSE expresion_else'''
+    p[0] = expresion_else1(p[1], p[2], "expresion_else")
+
+def p_expresion_else(p):
+    '''expresion_else : funcion_else expresion_else'''
+    p[0] = expresion_else(p[1], p[2], "expresion_else")
+
+def p_expresionEmpty_else(p):
+    '''expresion_else : empty empty'''
+    p[0] = Null()
+
+def p_funcion_else1(p):
+    '''funcion_else : Move_else expresion_else'''
+    p[0] = funcion_else1(p[1], p[2], "funcion_else1")
+
+def p_funcion_else2(p):
+    '''funcion_else : Delay_else expresion_else'''
+    p[0] = funcion_else2(p[1], p[2], "funcion_else2")
+
+#def p_funcion_else3(p):
+ #   ''' funcion_else : Opera_else expresion_else '''
+  #  p[0] = funcion_else3(p[1], p[2], "funcion_else3")
+
+def p_funcion_else4(p):
+    '''funcion_else : Println_else expresion_else'''
+    p[0] = funcion_else4(p[1], p[2], "funcion_else4")    
 
 
 #-----------------------------VAR DECLARATION----------------------------------------
@@ -765,6 +810,10 @@ def p_Menorigual4(p):
 #------------------------------------FUNCTIONS TYPES------------------------------------------------
 
 
+
+
+c = 0
+
 #------------------------------------OPERA SUMA------------------------------------------------------
 
 def p_OperaSuma1(p):
@@ -780,9 +829,10 @@ def p_OperaSuma1(p):
 
     results.append(resultado)
 
-    print("Resultado = " + str(resultado))
+    print(results)
 
     prints.append(resultado)
+    
 
 
 def p_OperaSuma2(p):
@@ -857,14 +907,18 @@ def p_OperaSuma5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado2 = p[5] + int(results[0])
+    
 
-    print(results[0])
-    print(p[5])
+    resultado = p[5] + int(results[c-1])
 
-    print("Resultado = "+str(resultado2))
+    results.append(resultado)
 
-    prints.append(resultado2)
+    print(results)
+    
+
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
 
 def p_OperaSuma6(p):
     '''
@@ -873,14 +927,14 @@ def p_OperaSuma6(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado2 = p[7] + int(results[0])
+    resultado = p[7] + int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 
 def p_OperaSuma7(p):
@@ -893,14 +947,14 @@ def p_OperaSuma7(p):
     for i in range(len(variables)):
         if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] + int(results[0])
+            resultado = valores[i-1] + int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
 
 def p_OperaSuma8(p):
     '''
@@ -912,14 +966,17 @@ def p_OperaSuma8(p):
     for i in range(len(variables)):
         if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] + int(results[0])
+            resultado = valores[i-1] + int(results[c-1])
+
+   
+    results.append(resultado) 
 
     print(results[0])
     print(p[5])
 
-    print("Resultado = "+str(resultado2))
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 
 #----------------------------------------------------OPERA RESTA-------------------------------------------------
@@ -935,12 +992,12 @@ def p_OperaResta1(p):
 
     resultado = p[5] - p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
 
+    print(results)
 
     prints.append(resultado)
+
 
 def p_OperaResta2(p):
     '''
@@ -952,12 +1009,12 @@ def p_OperaResta2(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
-    resultado = p[5] - p[7]
-
-    print("Resultado = " + str(resultado))
+            p[5] = int(valores[i-1])  
+        resultado = p[5] - p[7]
 
     results.append(resultado)
+
+    print("Resultado = " + str(resultado))
 
     prints.append(resultado)
 
@@ -971,10 +1028,8 @@ def p_OperaResta3(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
-    resultado = p[5] - p[7]
-
-    print("Resultado = " + str(resultado))
+            p[7] = int(valores[i-1])  
+        resultado = p[5] - p[7]
 
     results.append(resultado)
 
@@ -998,11 +1053,11 @@ def p_OperaResta4(p):
         
     resultado = p[5] - p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
 
     prints.append(resultado)
+
+    print("Resultado = " + str(resultado))
 
 def p_OperaResta5(p):
     '''
@@ -1011,32 +1066,35 @@ def p_OperaResta5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
+    resultado = p[5] - int(results[c-1])
+
+    results.append(resultado)
+
+    print(results)
     
-    resultado2 = p[5] - int(results[0])
 
-    print(results[0])
-    print(p[5])
+    print("Resultado = "+str(resultado))
 
-    print("Resultado = "+str(resultado2))
-
-    prints.append(resultado2)
+    prints.append(resultado)
 
 def p_OperaResta6(p):
     '''
     Opera : OPERA LPAREN RESTA COMA Opera COMA INTEGER RPAREN PUNTOCOMA
     '''
 
-    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[7] - int(results[0])
+    resultado = p[7] - int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
+
+    
 
 
 def p_OperaResta7(p):
@@ -1049,14 +1107,16 @@ def p_OperaResta7(p):
     for i in range(len(variables)):
         if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] - int(results[0])
+            resultado = valores[i-1] - int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
+
+
 
 def p_OperaResta8(p):
     '''
@@ -1068,14 +1128,17 @@ def p_OperaResta8(p):
     for i in range(len(variables)):
         if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] - int(results[0])
+            resultado = valores[i-1] - int(results[c-1])
+
+   
+    results.append(resultado) 
 
     print(results[0])
     print(p[5])
 
-    print("Resultado = "+str(resultado2))
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 
 #-------------------------------------------------OPERA MULTIPLICA---------------------------------------------------------
@@ -1093,9 +1156,10 @@ def p_OperaMult1(p):
 
     resultado = p[5] * p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
+
+    print(results)
+
     prints.append(resultado)
 
 
@@ -1111,13 +1175,13 @@ def p_OperaMult2(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
-            
-    resultado = p[5] * p[7]
+            p[5] = int(valores[i-1])  
+        resultado = p[5] * p[7]
+
+    results.append(resultado)
 
     print("Resultado = " + str(resultado))
 
-    results.append(resultado)
     prints.append(resultado)
 
 def p_OperaMult3(p):
@@ -1132,13 +1196,11 @@ def p_OperaMult3(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
-            
-    resultado = p[5] * p[7]
-
-    print("Resultado = " + str(resultado))
+            p[7] = int(valores[i-1])  
+        resultado = p[5] * p[7]
 
     results.append(resultado)
+
     prints.append(resultado)
 
 def p_OperaMult4(p):
@@ -1158,13 +1220,14 @@ def p_OperaMult4(p):
                 
         if variables[i-1] == p[5]:
             p[5] = int(valores[i-1])
-            
+        
     resultado = p[5] * p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
+
     prints.append(resultado)
+
+    print("Resultado = " + str(resultado))
 
 def p_OperaMult5(p):
     '''
@@ -1174,14 +1237,17 @@ def p_OperaMult5(p):
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[5] * int(results[0])
+    resultado = p[5] * int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
+
 
 def p_OperaMult6(p):
     '''
@@ -1191,14 +1257,14 @@ def p_OperaMult6(p):
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[7] * int(results[0])
+    resultado = p[7] * int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 def p_OperaMult7(p):
     '''
@@ -1210,14 +1276,14 @@ def p_OperaMult7(p):
     for i in range(len(variables)):
         if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] * int(results[0])
+            resultado = valores[i-1] * int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
 
 def p_OperaMult8(p):
     '''
@@ -1229,14 +1295,17 @@ def p_OperaMult8(p):
     for i in range(len(variables)):
         if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] * int(results[0])
+            resultado = valores[i-1] * int(results[c-1])
+
+   
+    results.append(resultado) 
 
     print(results[0])
     print(p[5])
 
-    print("Resultado = "+str(resultado2))
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 
 
@@ -1256,9 +1325,10 @@ def p_OperaDiv1(p):
 
     resultado = p[5] // p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
+
+    print(results)
+
     prints.append(resultado)
 
 def p_OperaDiv2(p):
@@ -1273,13 +1343,13 @@ def p_OperaDiv2(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+            p[5] = int(valores[i-1])  
+        resultado = p[5] // p[7]
 
-    resultado = p[5] // p[7]
+    results.append(resultado)
 
     print("Resultado = " + str(resultado))
 
-    results.append(resultado)
     prints.append(resultado)
 
 def p_OperaDiv3(p):
@@ -1294,13 +1364,11 @@ def p_OperaDiv3(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
-
-    resultado = p[5] // p[7]
-
-    print("Resultado = " + str(resultado))
+            p[7] = int(valores[i-1])  
+        resultado = p[5] // p[7]
 
     results.append(resultado)
+
     prints.append(resultado)
 
 def p_OperaDiv4(p):
@@ -1320,13 +1388,14 @@ def p_OperaDiv4(p):
                 
         if variables[i-1] == p[5]:
             p[5] = int(valores[i-1])
-
+        
     resultado = p[5] // p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
+
     prints.append(resultado)
+
+    print("Resultado = " + str(resultado))
 
 def p_OperaDiv5(p):
     '''
@@ -1336,14 +1405,16 @@ def p_OperaDiv5(p):
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[5] // int(results[0])
+    resultado = p[5] // int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
 
 def p_OperaDiv6(p):
     '''
@@ -1353,14 +1424,14 @@ def p_OperaDiv6(p):
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[7] // int(results[0])
+    resultado = p[7] // int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 def p_OperaDiv7(p):
     '''
@@ -1372,15 +1443,14 @@ def p_OperaDiv7(p):
     for i in range(len(variables)):
         if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] // int(results[0])
+            resultado = valores[i-1] // int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
 
+    prints.append(resultado)
 def p_OperaDiv8(p):
     '''
     Opera : OPERA LPAREN DIVIDE COMA Opera COMA ID RPAREN PUNTOCOMA
@@ -1391,14 +1461,17 @@ def p_OperaDiv8(p):
     for i in range(len(variables)):
         if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] // int(results[0])
+            resultado = valores[i-1] // int(results[c-1])
+
+   
+    results.append(resultado) 
 
     print(results[0])
     print(p[5])
 
-    print("Resultado = "+str(resultado2))
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 
 
@@ -1417,9 +1490,10 @@ def p_OperPot1(p):
 
     resultado = p[5] ** p[7]
 
-    print("Resultado = " + str(resultado))
-
     results.append(resultado)
+
+    print(results)
+
     prints.append(resultado)
 
 def p_OperPot2(p):
@@ -1434,15 +1508,13 @@ def p_OperPot2(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+            p[5] = int(valores[i-1])  
+        resultado = p[5] ** p[7]
 
-    resultado = p[5] ** p[7]
-
-    
+    results.append(resultado)
 
     print("Resultado = " + str(resultado))
 
-    results.append(resultado)
     prints.append(resultado)
     
 
@@ -1458,13 +1530,11 @@ def p_OperPot3(p):
     for i in range(len(variables)):
     
         if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
-
-    resultado = p[5] ** p[7]
-
-    print("Resultado = " + str(resultado))
+            p[7] = int(valores[i-1])  
+        resultado = p[5] ** p[7]
 
     results.append(resultado)
+
     prints.append(resultado)
     
 
@@ -1485,15 +1555,20 @@ def p_OperPot4(p):
                 
         if variables[i-1] == p[5]:
             p[5] = int(valores[i-1])
-
+        
     resultado = p[5] ** p[7]
+
+    results.append(resultado)
+
+    prints.append(resultado)
+
+    print("Resultado = " + str(resultado))
 
     
 
     print("Resultado = " + str(resultado))
 
     results.append(resultado)
-    prints.append(resultado)
 
 
 def p_OperaPot5(p):
@@ -1504,14 +1579,16 @@ def p_OperaPot5(p):
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[5] ** int(results[0])
+    resultado = p[5] ** int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
+
+    prints.append(resultado)
 
 def p_OperaPot6(p):
     '''
@@ -1521,14 +1598,14 @@ def p_OperaPot6(p):
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
     
-    resultado2 = p[7] ** int(results[0])
+    resultado = p[7] ** int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+    print(results)
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 
 def p_OperaPot7(p):
@@ -1541,14 +1618,12 @@ def p_OperaPot7(p):
     for i in range(len(variables)):
         if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] ** int(results[0])
+            resultado = valores[i-1] ** int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+    print("Resultado = "+str(resultado))
 
 def p_OperaPot8(p):
     '''
@@ -1560,14 +1635,17 @@ def p_OperaPot8(p):
     for i in range(len(variables)):
         if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] ** int(results[0])
+            resultado = valores[i-1] ** int(results[c-1])
+
+   
+    results.append(resultado) 
 
     print(results[0])
     print(p[5])
 
-    print("Resultado = "+str(resultado2))
+    print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+    prints.append(resultado)
 
 #--------------------------------------OPERA IF SUMA---------------------------------------
     
@@ -1578,14 +1656,13 @@ def p_Opera_ifSuma1(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
+    if BoolCondicion:
+        resultado = p[5] + p[7]
+        results.append(resultado)
+        print(results)
+        prints.append(resultado)
 
-    resultado = p[5] + p[7]
 
-    results.append(resultado)
-
-    print("Resultado = " + str(resultado))
-
-    prints.append(resultado)
 
 def p_Opera_ifSuma2(p):
     
@@ -1593,17 +1670,18 @@ def p_Opera_ifSuma2(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])  
-        resultado = p[5] + p[7]
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] + p[7]
 
-    results.append(resultado)
+        results.append(resultado)
 
-    print("Resultado = " + str(resultado))
+        print("Resultado = " + str(resultado))
 
-    prints.append(resultado)
+        prints.append(resultado)
     
 
 def p_Opera_ifSuma3(p):
@@ -1614,17 +1692,19 @@ def p_Opera_ifSuma3(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])  
-        resultado = p[5] + p[7]
+    if BoolCondicion:
 
-    results.append(resultado)
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] + p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    prints.append(resultado)
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifSuma4(p):
     '''
@@ -1634,22 +1714,24 @@ def p_Opera_ifSuma4(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        for j in range(len(variables)):
-    
-            if variables[j-1] == p[7]:
-                p[7] = int(valores[j-1])
-                
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:
+
+        for i in range(len(variables)):
+            for j in range(len(variables)):
         
-    resultado = p[5] + p[7]
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] + p[7]
 
-    results.append(resultado)
+        results.append(resultado)
 
-    prints.append(resultado)
+        prints.append(resultado)
 
-    print("Resultado = " + str(resultado))
+        print("Resultado = " + str(resultado))
 
 def p_Opera_ifSuma5(p):
     '''
@@ -1658,14 +1740,16 @@ def p_Opera_ifSuma5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado2 = p[5] + int(results[0])
+    if BoolCondicion:
 
-    print(results[0])
-    print(p[5])
+        resultado = p[5] + int(results[c-1])
 
-    print("Resultado = "+str(resultado2))
+        results.append(resultado)
 
-    prints.append(resultado2)
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
 
 def p_Opera_ifSuma6(p):
     '''
@@ -1674,14 +1758,17 @@ def p_Opera_ifSuma6(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado2 = p[7] + int(results[0])
 
-    print(results[0])
-    print(p[7])
+    if BoolCondicion:
 
-    print("Resultado = "+str(resultado2))
+        resultado = p[7] + int(results[c-1])
 
-    prints.append(resultado2)
+        results.append(resultado)
+
+        print(results)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 
 def p_Opera_ifSuma7(p):
@@ -1691,17 +1778,19 @@ def p_Opera_ifSuma7(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[5]:
+    if BoolCondicion:
 
-            resultado2 = valores[i-1] + int(results[0])
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
 
-    print(results[0])
-    print(p[5])
+                resultado = valores[i-1] + int(results[c-1])
 
-    print("Resultado = "+str(resultado2))
+        results.append(resultado)
 
-    prints.append(resultado2)
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifSuma8(p):
     '''
@@ -1710,17 +1799,21 @@ def p_Opera_ifSuma8(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[7]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] + int(results[0])
+                resultado = valores[i-1] + int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    
+        results.append(resultado) 
 
-    print("Resultado = "+str(resultado2))
+        print(results[0])
+        print(p[5])
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 
 #--------------------------------------OPERA IF RESTA---------------------------------------
@@ -1733,14 +1826,15 @@ def p_Opera_ifResta1(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado = p[5] - p[7]
+    if BoolCondicion:
 
-    print("Resultado = " + str(resultado))
+        resultado = p[5] - p[7]
 
-    results.append(resultado)
+        results.append(resultado)
 
+        print(results)
 
-    prints.append(resultado)
+        prints.append(resultado)
 
 def p_Opera_ifResta2(p):
     '''
@@ -1749,17 +1843,18 @@ def p_Opera_ifResta2(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
-    resultado = p[5] - p[7]
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] - p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
+        print("Resultado = " + str(resultado))
 
-    prints.append(resultado)
+        prints.append(resultado)
 
 def p_Opera_ifResta3(p):
     '''
@@ -1768,17 +1863,16 @@ def p_Opera_ifResta3(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
-    resultado = p[5] - p[7]
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] - p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
-
-    prints.append(resultado)
+        prints.append(resultado)
 
 def p_Opera_ifResta4(p):
     '''
@@ -1787,22 +1881,23 @@ def p_Opera_ifResta4(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        for j in range(len(variables)):
-    
-            if variables[j-1] == p[7]:
-                p[7] = int(valores[j-1])
-                
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
         
-    resultado = p[5] - p[7]
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] - p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
 
     print("Resultado = " + str(resultado))
-
-    results.append(resultado)
-
-    prints.append(resultado)
 
 def p_Opera_ifResta5(p):
     '''
@@ -1811,15 +1906,18 @@ def p_Opera_ifResta5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[5] - int(results[0])
+    if BoolCondicion:
 
-    print(results[0])
-    print(p[5])
+        resultado = p[5] - int(results[c-1])
 
-    print("Resultado = "+str(resultado2))
+        results.append(resultado)
 
-    prints.append(resultado2)
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifResta6(p):
     '''
@@ -1828,15 +1926,16 @@ def p_Opera_ifResta6(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
+    if BoolCondicion:
     
-    resultado2 = p[7] - int(results[0])
+        resultado = p[7] - int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+        prints.append(resultado)
 
 
 def p_Opera_ifResta7(p):
@@ -1846,17 +1945,18 @@ def p_Opera_ifResta7(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[5]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] - int(results[0])
+                resultado = valores[i-1] - int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifResta8(p):
     '''
@@ -1865,17 +1965,21 @@ def p_Opera_ifResta8(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[7]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] - int(results[0])
+                resultado = valores[i-1] - int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    
+        results.append(resultado) 
 
-    print("Resultado = "+str(resultado2))
+        print(results[0])
+        print(p[5])
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 #-----------------------------------------------OPERA IF MULT-------------------------------------
 
@@ -1887,15 +1991,17 @@ def p_Opera_ifMult1(p):
     Opera_if : OPERA LPAREN MULTIPLICA COMA INTEGER COMA INTEGER RPAREN PUNTOCOMA
     '''
 
-
+    
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado = p[5] * p[7]
+    if BoolCondicion:
+        resultado = p[5] * p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
-    prints.append(resultado)
+        print(results)
+
+        prints.append(resultado)
 
 
 def p_Opera_ifMult2(p):
@@ -1907,18 +2013,20 @@ def p_Opera_ifMult2(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] * p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+
     
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
-            
-    resultado = p[5] * p[7]
-
-    print("Resultado = " + str(resultado))
-
-    results.append(resultado)
-    prints.append(resultado)
-
 def p_Opera_ifMult3(p):
         
     '''
@@ -1928,17 +2036,16 @@ def p_Opera_ifMult3(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
-            
-    resultado = p[5] * p[7]
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] * p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
-    prints.append(resultado)
+        prints.append(resultado)
 
 def p_Opera_ifMult4(p):
         
@@ -1949,21 +2056,23 @@ def p_Opera_ifMult4(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        for j in range(len(variables)):
-    
-            if variables[j-1] == p[7]:
-                p[7] = int(valores[j-1])
-                
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:   
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
             
-    resultado = p[5] * p[7]
+        resultado = p[5] * p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
-    prints.append(resultado)
+        prints.append(resultado)
+
+        print("Resultado = " + str(resultado))
 
 def p_Opera_ifMult5(p):
     '''
@@ -1972,15 +2081,17 @@ def p_Opera_ifMult5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[5] * int(results[0])
+    if BoolCondicion:
+        resultado = p[5] * int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifMult6(p):
     '''
@@ -1989,15 +2100,15 @@ def p_Opera_ifMult6(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[7] * int(results[0])
+    if BoolCondicion:
+        resultado = p[7] * int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+        prints.append(resultado)
 
 def p_Opera_ifMult7(p):
     '''
@@ -2006,17 +2117,18 @@ def p_Opera_ifMult7(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[5]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] * int(results[0])
+                resultado = valores[i-1] * int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifMult8(p):
     '''
@@ -2025,17 +2137,21 @@ def p_Opera_ifMult8(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[7]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] * int(results[0])
+                resultado = valores[i-1] * int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    
+        results.append(resultado) 
 
-    print("Resultado = "+str(resultado2))
+        print(results[0])
+        print(p[5])
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 
 
@@ -2053,12 +2169,14 @@ def p_Opera_ifDiv1(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado = p[5] // p[7]
+    if BoolCondicion:
+        resultado = p[5] // p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
-    prints.append(resultado)
+        print(results)
+
+        prints.append(resultado)
 
 def p_Opera_ifDiv2(p):
         
@@ -2069,17 +2187,18 @@ def p_Opera_ifDiv2(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] // p[7]
 
-    resultado = p[5] // p[7]
+        results.append(resultado)
 
-    print("Resultado = " + str(resultado))
+        print("Resultado = " + str(resultado))
 
-    results.append(resultado)
-    prints.append(resultado)
+        prints.append(resultado)
 
 def p_Opera_ifDiv3(p):
         
@@ -2090,17 +2209,16 @@ def p_Opera_ifDiv3(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] // p[7]
 
-    resultado = p[5] // p[7]
+        results.append(resultado)
 
-    print("Resultado = " + str(resultado))
-
-    results.append(resultado)
-    prints.append(resultado)
+        prints.append(resultado)
 
 def p_Opera_ifDiv4(p):
         
@@ -2108,23 +2226,26 @@ def p_Opera_ifDiv4(p):
     Opera_if : OPERA LPAREN DIVIDE COMA ID COMA ID RPAREN PUNTOCOMA
     '''
 
+
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        for j in range(len(variables)):
-    
-            if variables[j-1] == p[7]:
-                p[7] = int(valores[j-1])
-                
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] // p[7]
 
-    resultado = p[5] // p[7]
+        results.append(resultado)
 
-    print("Resultado = " + str(resultado))
+        prints.append(resultado)
 
-    results.append(resultado)
-    prints.append(resultado)
+        print("Resultado = " + str(resultado))
 
 def p_Opera_ifDiv5(p):
     '''
@@ -2133,15 +2254,17 @@ def p_Opera_ifDiv5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[5] // int(results[0])
+    if BoolCondicion:
+        resultado = p[5] // int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifDiv6(p):
     '''
@@ -2150,15 +2273,15 @@ def p_Opera_ifDiv6(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[7] // int(results[0])
+    if BoolCondicion:
+        resultado = p[7] // int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+        prints.append(resultado)
 
 def p_Opera_ifDiv7(p):
     '''
@@ -2167,17 +2290,16 @@ def p_Opera_ifDiv7(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[5]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] // int(results[0])
+                resultado = valores[i-1] // int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
 
 def p_Opera_ifDiv8(p):
     '''
@@ -2186,17 +2308,21 @@ def p_Opera_ifDiv8(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[7]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] // int(results[0])
+                resultado = valores[i-1] // int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+    
+        results.append(resultado) 
 
-    print("Resultado = "+str(resultado2))
+        print(results[0])
+        print(p[5])
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 
 #-------------------------------------------------OPERA POTENCIA---------------------------------------------------------
@@ -2211,12 +2337,14 @@ def p_Opera_ifPot1(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    resultado = p[5] ** p[7]
+    if BoolCondicion:
+        resultado = p[5] ** p[7]
 
-    print("Resultado = " + str(resultado))
+        results.append(resultado)
 
-    results.append(resultado)
-    prints.append(resultado)
+        print(results)
+
+        prints.append(resultado)
 
 def p_Opera_ifPot2(p):
         
@@ -2227,19 +2355,18 @@ def p_Opera_ifPot2(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] ** p[7]
 
-    resultado = p[5] ** p[7]
+        results.append(resultado)
 
-    
+        print("Resultado = " + str(resultado))
 
-    print("Resultado = " + str(resultado))
-
-    results.append(resultado)
-    prints.append(resultado)
+        prints.append(resultado)
     
 
 def p_Opera_ifPot3(p):
@@ -2251,17 +2378,16 @@ def p_Opera_ifPot3(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-    
-        if variables[i-1] == p[7]:
-            p[7] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] ** p[7]
 
-    resultado = p[5] ** p[7]
+        results.append(resultado)
 
-    print("Resultado = " + str(resultado))
-
-    results.append(resultado)
-    prints.append(resultado)
+        prints.append(resultado)
     
 
 def p_Opera_ifPot4(p):
@@ -2273,23 +2399,25 @@ def p_Opera_ifPot4(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        for j in range(len(variables)):
-    
-            if variables[j-1] == p[7]:
-                p[7] = int(valores[j-1])
-                
-        if variables[i-1] == p[5]:
-            p[5] = int(valores[i-1])
+    if BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] ** p[7]
 
-    resultado = p[5] ** p[7]
+        results.append(resultado)
 
-    
+        prints.append(resultado)
 
-    print("Resultado = " + str(resultado))
+        print("Resultado = " + str(resultado))
 
-    results.append(resultado)
-    prints.append(resultado)
+        results.append(resultado)
 
 
 def p_Opera_ifPot5(p):
@@ -2299,15 +2427,17 @@ def p_Opera_ifPot5(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[5] ** int(results[0])
+    if BoolCondicion:
+        resultado = p[5] ** int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
 
 def p_Opera_ifPot6(p):
     '''
@@ -2316,15 +2446,15 @@ def p_Opera_ifPot6(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    
-    resultado2 = p[7] ** int(results[0])
+    if BoolCondicion:
+        resultado = p[7] ** int(results[c-1])
 
-    print(results[0])
-    print(p[7])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
+        print(results)
+        print("Resultado = "+str(resultado))
 
-    prints.append(resultado2)
+        prints.append(resultado)
 
 
 def p_Opera_ifPot7(p):
@@ -2334,17 +2464,16 @@ def p_Opera_ifPot7(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[5]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
 
-            resultado2 = valores[i-1] ** int(results[0])
+                resultado = valores[i-1] ** int(results[c-1])
 
-    print(results[0])
-    print(p[5])
+        results.append(resultado)
 
-    print("Resultado = "+str(resultado2))
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
 
 def p_Opera_ifPot8(p):
     '''
@@ -2353,18 +2482,21 @@ def p_Opera_ifPot8(p):
 
     p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
 
-    for i in range(len(variables)):
-        if variables[i-1] == p[7]:
+    if BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
 
-            resultado2 = valores[i-1] ** int(results[0])
+                resultado = valores[i-1] ** int(results[c-1]) 
 
-    print(results[0])
-    print(p[5])
+    
+        results.append(resultado) 
 
-    print("Resultado = "+str(resultado2))
+        print(results[0])
+        print(p[5])
 
-    prints.append(resultado2)
+        print("Resultado = "+str(resultado))
 
+        prints.append(resultado)
 
 #--------------------------------------------------------------------------
 def p_Move(p):
@@ -2428,6 +2560,37 @@ def p_Move_if(p):
 
     p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
 
+def p_Move_else(p):
+    '''Move_else : MOVE LPAREN ID RPAREN PUNTOCOMA'''
+    
+    print(BoolCondicion)
+    
+    if not BoolCondicion:
+    
+        if p[3] == "p":
+            #write_read("1")
+            print("Moviendo pulgar")
+
+        elif p[3] == "i":
+            #write_read("2")
+            print("Moviendo índice")
+
+        elif p[3] == "c":
+            #write_read("3")
+            print ("Moviento centro")
+
+        elif p[3] == "a":
+            #write_read("4")
+            print ("Moviendo anular")
+
+        elif p[3] == "m":
+            #write_read("5")
+            print ("Moviendo meñique")
+        else:
+            errores.append(f'Error semántico: el valor no es un dedo')
+
+
+    p[0] = Move(MOVE(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Move")
 
 #--------------------------------------------------------------------------
 
@@ -2436,7 +2599,6 @@ def p_Delay(p):
     '''
     Delay : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
     '''
-    print("aqui va entrando")
     if p[5].strip('"') == "mili":
         time.sleep(p[3]/1000)
         print("Delay en milisegundos")
@@ -2458,9 +2620,37 @@ def p_Delay_if(p):
     '''
     Delay_if : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
     '''
-    print("aqui esta entrando2")
     print(p[5])
     if BoolCondicion:
+        if p[5].strip('"') == "mili":
+            time.sleep(p[3]/1000)
+            print("Delay en milisegundos")
+            
+        elif p[5].strip('"') == "seg":
+            time.sleep(p[3])
+            print("Delay en segundos")
+            
+        elif p[5].strip('"') == "min":
+            time.sleep(p[3]*60)
+            print("Delay en minutos")
+
+        elif type(p[3]) != int:
+            errores.append(f'Error semántico: el valor de delay no es un número')
+    
+
+    p[0]= Delay(DELAY(p[1]),LPAREN(p[2]),Integer(p[3]),COMA(p[4]),String(p[5]),RPAREN(p[6]),PuntoComa(p[7]),"Delay")
+
+def p_Delay_else(p):
+    '''
+    Delay_else : DELAY LPAREN INTEGER COMA STRING RPAREN PUNTOCOMA
+    '''
+    print("aqui esta entrando2")
+    print(p[5])
+    if  BoolCondicion:
+
+        pass
+
+    else:
         if p[5].strip('"') == "mili":
             time.sleep(p[3]/1000)
             print("Delay en milisegundos")
@@ -2494,6 +2684,19 @@ def p_If1(p):
         pass
 
     p[0] = If1(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),"If1")
+
+def p_If2(p):
+
+    '''
+    If : IF condicion LLAVEL cuerpo_if LLAVER ELSE LLAVEL cuerpo_else LLAVER
+    '''
+    
+    if BoolCondicion:
+        print("Entro al if")
+    else:
+        pass
+
+    p[0] = If2(IF(p[1]),p[2],LLAVEL(p[3]),p[4],LLAVER(p[5]),ELSE(p[6]),LLAVEL(p[7]),p[8],LLAVER(p[9]),"If2")
 
 #--------------------------------------------------------------------------
 
@@ -2587,6 +2790,7 @@ def p_Println4(p):
 
     p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
 
+#--------------------------------------------------------------------------
 
 def p_Println1_if(p):
     '''
@@ -2643,6 +2847,75 @@ def p_Println4_if(p):
     
 #--------------------------------------------------------------------------
 
+def p_Println1_else(p):
+    '''
+    Println_else : PRINTLN LPAREN STRING RPAREN PUNTOCOMA
+            
+    '''
+    print("Entró al else")
+    
+    if  BoolCondicion:
+        pass
+
+    else:
+        prints.append(p[3])
+        print(prints)
+
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),String(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println2_else(p):
+    '''
+    Println_else : PRINTLN LPAREN INTEGER RPAREN PUNTOCOMA
+            
+    '''
+
+    if  BoolCondicion:
+        pass
+    
+    else:
+        prints.append(p[3])
+
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Integer(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+
+def p_Println3_else(p):
+    '''
+    Println_else : PRINTLN LPAREN ID RPAREN PUNTOCOMA
+            
+    '''
+
+    if  BoolCondicion:
+
+        pass
+    else:
+        for i in range(len(variables)):
+            if variables[i-1] == p[3]:
+                prints.append(valores[i-1])      
+
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Id(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+def p_Println4_else(p):
+    '''
+    Println_else : PRINTLN LPAREN BOOLEAN RPAREN PUNTOCOMA
+            
+    '''
+    if  BoolCondicion:
+
+        pass
+    else:
+        prints.append(p[3])
+        print(prints)
+
+    p[0] = Println(PRINTLN(p[1]),LPAREN(p[2]),Boolean(p[3]),RPAREN(p[4]),PuntoComa(p[5]),"Println")
+
+
+#--------------------------------------------------------------------------
+
 
 def p_main(p):
     '''
@@ -2667,7 +2940,7 @@ def p_empty(p):
 
 def p_error(p):
     if p:
-        errores.append(f'Syntax error in line {p.lineno} in {p.value} token')
+        errores.append(f'Syntax error in line {p.lineno - int(lineas)} in {p.value} token')
     print(p.lineno)
 
 #---------------------------------------------FN--------------------------------------------------
@@ -2675,7 +2948,7 @@ def p_error(p):
 def p_fn(p):
     '''fn : FN ID LPAREN RPAREN LLAVEL cuerpo LLAVER PUNTOCOMA empty'''
 
-    p[0] = fn(Null(),Id(p[2]),LPAREN(p[3]),RPAREN(p[4]),LLAVEL(p[5]),p[6],LLAVER(p[7]),PuntoComa(p[8]),Null(),"fn")
+    p[0] = fn(FN(p[1]),Id(p[2]),LPAREN(p[3]),RPAREN(p[4]),LLAVEL(p[5]),p[6],LLAVER(p[7]),PuntoComa(p[8]),Null(),"fn")
 
 #---------------------------------------------CALL RUNNER----------------------------------------
 
@@ -2710,13 +2983,17 @@ def traducir(result):
     graphFile.close()
     print ("El programa traducido se guardo en \"graphviztrhee.vz\"")
 
-
 def sintacticAnalizer(cadena):
+    global lineas
     parser = yacc.yacc()   
     result = parser.parse(cadena)
     result.imprimir(" ")
     #print(result.traducir())
     traducir(result)
+
+def setlineas(linea):
+    global lineas
+    lineas = int(linea[:-2])
 
 def showAst(cadena):
     parser = yacc.yacc()   

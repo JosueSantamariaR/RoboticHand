@@ -1,31 +1,43 @@
 Inicio
 
+@Definicion de funcion
 fn sumar(){
 	println("cruck");
 };
+
+@Manejo de Variables
+let x = 10;
+let y = 5;
+println(x);
+opera(+,x,y);
+
+@Funcion move
 move (p);
+move(i);
+
+@Condicional if - else
 if 3<5{
 	println("hola");
 } else {
 	println("else");
 }
-delay(5,"mili");
 
-while (3<5){
+@Funcion delay
+delay(3,"seg");
 
-	move(i);
-	opera(+,5,4);
-	move(p);
-	println("hola");
+@Funcion opera
+opera(+,5,opera(+,2,2););
 
-	if  3==4 {
-		
-		move(c);
-		move(m);
-		opera(-,2,6);
-	}
+@Funcion imprimir
+println("hola");
 
+@Condicional if - solo
+if  2==4 {	
+	move(c);
+	move(m);
+	opera(-,2,6);
 }
+
 
 main();
 
