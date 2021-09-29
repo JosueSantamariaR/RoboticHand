@@ -146,9 +146,9 @@ def p_funcion_else2(p):
     '''funcion_else : Delay_else expresion_else'''
     p[0] = funcion_else2(p[1], p[2], "funcion_else2")
 
-#def p_funcion_else3(p):
- #   ''' funcion_else : Opera_else expresion_else '''
-  #  p[0] = funcion_else3(p[1], p[2], "funcion_else3")
+def p_funcion_else3(p):
+    ''' funcion_else : Opera_else expresion_else '''
+    p[0] = funcion_else3(p[1], p[2], "funcion_else3")
 
 def p_funcion_else4(p):
     '''funcion_else : Println_else expresion_else'''
@@ -2497,6 +2497,851 @@ def p_Opera_ifPot8(p):
         print("Resultado = "+str(resultado))
 
         prints.append(resultado)
+
+#-----------------------OPERA ELSE --------------------------
+
+def p_Opera_elseSuma1(p):
+    
+    ''' Opera_else : OPERA LPAREN SUMA COMA INTEGER COMA INTEGER RPAREN PUNTOCOMA'''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] + p[7]
+
+        results.append(resultado)
+
+        print(results)
+
+        prints.append(resultado)
+
+
+
+def p_Opera_elseSuma2(p):
+    
+    ''' Opera_else : OPERA LPAREN SUMA COMA ID COMA INTEGER RPAREN PUNTOCOMA'''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] + p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+    
+
+def p_Opera_elseSuma3(p):
+    '''
+    Opera_else : OPERA LPAREN SUMA COMA INTEGER COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] + p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseSuma4(p):
+    '''
+    Opera_else : OPERA LPAREN SUMA COMA ID COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] + p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+def p_Opera_elseSuma5(p):
+    '''
+    Opera_else : OPERA LPAREN SUMA COMA INTEGER COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] + int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
+
+def p_Opera_elseSuma6(p):
+    '''
+    Opera_else : OPERA LPAREN SUMA COMA Opera COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[7] + int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+
+def p_Opera_elseSuma7(p):
+    '''
+    Opera_else : OPERA LPAREN SUMA COMA ID COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
+
+                resultado = valores[i-1] + int(results[c-1])
+
+        results.append(resultado)
+
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseSuma8(p):
+    '''
+    Opera_else : OPERA LPAREN SUMA COMA Opera COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Suma(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
+
+                resultado = valores[i-1] + int(results[c-1])
+
+    
+        results.append(resultado) 
+
+        print(results[0])
+        print(p[5])
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+
+#--------------------------------------OPERA ELSE RESTA---------------------------------------
+
+def p_Opera_elseResta1(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA INTEGER COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+    
+    if not BoolCondicion:
+        resultado = p[5] - p[7]
+
+        results.append(resultado)
+
+        print(results)
+
+        prints.append(resultado)
+
+def p_Opera_elseResta2(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA ID COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] - p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseResta3(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA INTEGER COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] - p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+def p_Opera_elseResta4(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA ID COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] - p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+def p_Opera_elseResta5(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA INTEGER COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] - int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseResta6(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA Opera COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[7] - int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+
+def p_Opera_elseResta7(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA ID COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
+
+                resultado = valores[i-1] - int(results[c-1])
+
+        results.append(resultado)
+
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseResta8(p):
+    '''
+    Opera_else : OPERA LPAREN RESTA COMA Opera COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Resta(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
+
+                resultado = valores[i-1] - int(results[c-1])
+
+    
+        results.append(resultado) 
+
+        print(results[0])
+        print(p[5])
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+#-----------------------------------------------OPERA ELSE MULT-------------------------------------
+
+
+
+def p_Opera_elseMult1(p):
+        
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA INTEGER COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] * p[7]
+
+        results.append(resultado)
+
+        print(results)
+
+        prints.append(resultado)
+
+
+def p_Opera_elseMult2(p):
+        
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA ID COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] * p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+
+    
+def p_Opera_elseMult3(p):
+        
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA INTEGER COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] * p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+def p_Opera_elseMult4(p):
+        
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA ID COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] * p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+def p_Opera_elseMult5(p):
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA INTEGER COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] * int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseMult6(p):
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA Opera COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[7] * int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseMult7(p):
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA ID COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
+
+                resultado = valores[i-1] * int(results[c-1])
+
+        results.append(resultado)
+
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseMult8(p):
+    '''
+    Opera_else : OPERA LPAREN MULTIPLICA COMA Opera COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Multiplica(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
+
+                resultado = valores[i-1] * int(results[c-1])
+
+    
+        results.append(resultado) 
+
+        print(results[0])
+        print(p[5])
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+
+
+#-------------------------------------------------OPERA ELSE DIVIDE---------------------------------------------------------
+
+
+
+    
+def p_Opera_elseDiv1(p):
+        
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA INTEGER COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] // p[7]
+
+        results.append(resultado)
+
+        print(results)
+
+        prints.append(resultado)
+
+def p_Opera_elseDiv2(p):
+        
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA ID COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] // p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseDiv3(p):
+        
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA INTEGER COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+    if not BoolCondicion:
+
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] // p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+def p_Opera_elseDiv4(p):
+        
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA ID COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] // p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+def p_Opera_elseDiv5(p):
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA INTEGER COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] // int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseDiv6(p):
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA Opera COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[7] // int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elseDiv7(p):
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA ID COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
+
+                resultado = valores[i-1] // int(results[c-1])
+
+        results.append(resultado)
+
+
+        print("Resultado = "+str(resultado))
+
+def p_Opera_elseDiv8(p):
+    '''
+    Opera_else : OPERA LPAREN DIVIDE COMA Opera COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Divide(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
+
+                resultado = valores[i-1] // int(results[c-1])
+
+        results.append(resultado) 
+
+        print(results[0])
+        print(p[5])
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+
+#-------------------------------------------------OPERA POTENCIA---------------------------------------------------------
+
+
+def p_Opera_elsePot1(p):
+        
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA INTEGER COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] ** p[7]
+
+        results.append(resultado)
+
+        print(results)
+
+        prints.append(resultado)
+
+def p_Opera_elsePot2(p):
+        
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA ID COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])  
+            resultado = p[5] ** p[7]
+
+        results.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        prints.append(resultado)
+    
+
+def p_Opera_elsePot3(p):
+        
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA INTEGER COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+        
+            if variables[i-1] == p[7]:
+                p[7] = int(valores[i-1])  
+            resultado = p[5] ** p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+    
+
+def p_Opera_elsePot4(p):
+        
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA ID COMA ID RPAREN PUNTOCOMA
+    '''
+
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            for j in range(len(variables)):
+        
+                if variables[j-1] == p[7]:
+                    p[7] = int(valores[j-1])
+                    
+            if variables[i-1] == p[5]:
+                p[5] = int(valores[i-1])
+            
+        resultado = p[5] ** p[7]
+
+        results.append(resultado)
+
+        prints.append(resultado)
+
+        print("Resultado = " + str(resultado))
+
+        results.append(resultado)
+
+
+def p_Opera_elsePot5(p):
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA INTEGER COMA Opera RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Integer(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[5] ** int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+def p_Opera_elsePot6(p):
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA Opera COMA INTEGER RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),p[5],COMA(p[6]),Integer(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        resultado = p[7] ** int(results[c-1])
+
+        results.append(resultado)
+
+        print(results)
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
+
+def p_Opera_elsePot7(p):
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA ID COMA Opera RPAREN PUNTOCOMA
+    '''
+    
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),Id(p[5]),COMA(p[6]),p[7],RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+        for i in range(len(variables)):
+            if variables[i-1] == p[5]:
+
+                resultado = valores[i-1] ** int(results[c-1])
+
+        results.append(resultado)
+
+
+        print("Resultado = "+str(resultado))
+
+def p_Opera_elsePot8(p):
+    '''
+    Opera_else : OPERA LPAREN POTENCIA COMA Opera COMA ID RPAREN PUNTOCOMA
+    '''
+
+    p[0] = Opera(OPERA(p[1]),LPAREN(p[2]),Potencia(p[3]),COMA(p[4]),p[5],COMA(p[6]),Id(p[7]),RPAREN(p[8]),PuntoComa(p[9]),"Opera")
+
+    if not BoolCondicion:
+
+        for i in range(len(variables)):
+            if variables[i-1] == p[7]:
+
+                resultado = valores[i-1] ** int(results[c-1]) 
+
+    
+        results.append(resultado) 
+
+        print(results[0])
+        print(p[5])
+
+        print("Resultado = "+str(resultado))
+
+        prints.append(resultado)
+
 
 #--------------------------------------------------------------------------
 def p_Move(p):

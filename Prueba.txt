@@ -19,7 +19,7 @@ move(i);
 if 3<5{
 	println("hola");
 } else {
-	println("else");
+	opera(+,6,6);
 }
 
 @Funcion delay
@@ -43,4 +43,5 @@ main();
 
 
 Fin
+
 

@@ -738,7 +738,7 @@ class funcion_else2(Nodo):
         txt += id + " -> " + son2 + "\n\t"
 
         return id
-'''
+
 class funcion_else3(Nodo):
     def __init__(self,son1, son2, name):
         self.name = name
@@ -780,7 +780,7 @@ class funcion_else3(Nodo):
         txt += id + " -> " + son2 + "\n\t"
 
         return id
-'''
+
 class funcion_else4(Nodo):
     def __init__(self,son1, son2, name):
         self.name = name
